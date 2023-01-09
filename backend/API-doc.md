@@ -53,7 +53,7 @@ Returns the information about the current user that is logged in.
 * Request
   * Method: GET
   * URL: /API/User/:userId
-          /****Could be just /API/User though because its the logged in user not a specific "searched" user****/
+          /*** Could be just /API/User though because its the logged in user not a specific "searched" user ***/
   * Body: none
 
 * Successful Response when there is a logged in user

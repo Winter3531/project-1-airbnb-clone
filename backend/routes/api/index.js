@@ -1,7 +1,8 @@
 
 // backend/routes/api/index.js
 const router = require('express').Router();
-// GET /api/restore-user
+const sessionRouter = require('./session.js');
+const usersRouter = require('./users.js')
 const {restoreUser} = require('../../utils/auth.js');
 
 // Connect restoreUser middleware to the API router
@@ -9,17 +10,9 @@ const {restoreUser} = require('../../utils/auth.js');
 // If current user session is not valid, set req.user to null
 router.use(restoreUser);
 
-// // test route
-// router.get('/restore-user', (req, res) => {
-//   return res.json(req.user);
-// });
+router.use('/session', sessionRouter);
 
-// // test route
-// const { requireAuth } = require('../../utils/auth.js');
-// router.get('/require-auth', requireAuth, (req, res) => {
-//     return res.json(req.user);
-//   }
-// );
+router.use('/users', usersRouter);
 
 router.post('/test', function(req, res) {
     res.json({ requestBody: req.body });

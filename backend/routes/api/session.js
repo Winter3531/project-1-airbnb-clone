@@ -26,4 +26,10 @@ router.post('/', async (req, res, next) => {
     });
 });
 
+// Log out
+router.delete('/', (_req, res) => {
+    res.clearCookie('token');
+    return res.json({message: 'Success'});
+});
+
 module.exports = router;

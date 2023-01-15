@@ -25,13 +25,19 @@ const validateSignUp = [
         .exists({checkFalsy: true})
         .isLength({min: 6})
         .withMessage('Password must be 6 characters or more.'),
+    check('firstName')
+        .exists({checkFalsy: true})
+        .withMessage('Please provide a first name.'),
+    check('lastName')
+        .exists({checkFalsy: true})
+        .withMessage('Please provide a last name.'),
     handleValidationErrors
 ];
 
 // Sign up
 router.post('/', validateSignUp, async (req, res) => {
-    const {email, password, username} = req.body;
-    const user = await User.signup({email, username, password});
+    const {firstName, lastName, email, username, password} = req.body;
+    const user = await User.signup({firstName, lastName, email, username, password});
 
     await setTokenCookie(res, user);
 
@@ -41,3 +47,19 @@ router.post('/', validateSignUp, async (req, res) => {
 });
 
 module.exports = router;
+
+
+// fetch('/api/users', {
+//     method: 'POST',
+//     headers: {
+//       "Content-Type": "application/json",
+//       "XSRF-TOKEN": `GVpYpXDB-ses29bdB4HhNeHyDwQ9hcBU_6VI`
+//     },
+//     body: JSON.stringify({
+//       firstName: 'FirstX',
+//       lastName: 'LastX',
+//       email: 'firestar@spider.man',
+//       username: 'Firestar',
+//       password: 'password'
+//     })
+//   }).then(res => res.json()).then(data => console.log(data));

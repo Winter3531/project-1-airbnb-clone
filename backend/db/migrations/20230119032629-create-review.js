@@ -2,54 +2,36 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Spots', {
+    await queryInterface.createTable('Reviews', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ownerId: {
+      userId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'User',
           key: 'id',
         },
-        onDelete: 'cascade',
+        onDelete: 'cascade'
       },
-      address: {
+      spotId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Spot',
+          key: 'id',
+        },
+        onDelete: 'cascade'
+      },
+      review: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
-      city: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      state: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      country: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      lat: {
-        type: Sequelize.DECIMAL,
-        allowNull: false,
-      },
-      lng: {
-        type: Sequelize.DECIMAL,
-        allowNull: false,
-      },
-      name: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-      },
-      description: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      price: {
+      stars: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
@@ -66,6 +48,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Spots');
+    await queryInterface.dropTable('Reviews');
   }
 };

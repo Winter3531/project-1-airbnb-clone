@@ -4,8 +4,20 @@ const {Review, User, Spot, ReviewImage, SpotImage} = require('../../db/models');
 const {sequelize} = require('../../db/models');
 const {requireAuth} = require('../../utils/auth');
 const {check} = require('express-validator');
+const {handleValidationErrors} = require('../../utils/validation')
 
 const router = express.Router();
+
+const reviewValidation = [
+    check('review')
+        .exists({checkFalsy: true})
+        .isString()
+        .withMessage('Review text is required'),
+    check('stars')
+        .exists({checkFalsy: true})
+        .withMessage('Stars must be an integer from 1 to 5'),
+    handleValidationErrors
+]
 
 // Get all Reviews by current User
 router.get('/current', requireAuth, async (req, res) => {
@@ -62,7 +74,7 @@ router.get('/current', requireAuth, async (req, res) => {
     });
 })
 
-// Add an Image to a Review
+// Add an Image to a Review by ID
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     // get req data
     const userId = req.user.id;
@@ -133,8 +145,41 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 })
 
 // Edit Review
-router.put('/:reviewId', requireAuth, /*validator*/ async (req, res) => {
-    // needs a validator
+router.put('/:reviewId', requireAuth, reviewValidation, async (req, res) => {
+    // get req data
+    const reviewId = req.params.reviewId
+    const userId = req.user.id
+
+    const review = await Review.findOne({
+        where: {
+            id: reviewId
+        }
+    })
+
+    // review exists && belongs to user
+    if(!review){
+        return res.status(404).json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+    if(review.userId !== userId){
+        return res.status(403).json({
+            message: "Forbidden",
+            statusCode: 403
+        })
+    }
+
+    // update review
+    review.update({
+        userId: userId,
+        spotId: review.spotId,
+        review: req.body.review,
+        stars: req.body.stars
+    })
+
+
+    res.json(review)
 })
 
 // Delete a Review

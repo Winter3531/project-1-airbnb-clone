@@ -7,6 +7,7 @@ const {check} = require('express-validator');
 
 const router = express.Router();
 
+// Get all Reviews by current User
 router.get('/current', requireAuth, async (req, res) => {
     // get the review
     const reviews = await Review.findAll({
@@ -61,6 +62,117 @@ router.get('/current', requireAuth, async (req, res) => {
     });
 })
 
+// Add an Image to a Review
+router.post('/:reviewId/images', requireAuth, async (req, res) => {
+    // get req data
+    const userId = req.user.id;
+    const reviewId = req.params.reviewId;
+    const img = req.body.url
+    const review = await Review.findOne({
+        where: {
+            id: reviewId
+        },
+        include: {
+            model: ReviewImage
+        },
+        attributes: {
+            include: [
+                [sequelize.literal(`(
+                    SELECT COUNT(*)
+                    FROM ReviewImages
+                    WHERE reviewId = ${reviewId}
+                )`), "imgCount"],
+            ]
+        }
+    })
 
+    // authorize user and verify review exists
+    if(!review){
+        return res.status(404).json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    };
+    if(review.userId !== userId){
+        return res.status(403).json({
+            message: "Forbidden",
+            statusCode: 403
+        })
+    };
+
+
+    const reviewData = review.toJSON();
+    // check for image count
+    if(reviewData.imgCount === 10){
+        return res.status(403).json({
+            message: "Maximum number of images for this resource was reached",
+            statusCode: 403
+        })
+    }
+
+
+    // add the image
+    ReviewImage.create({
+        url: img,
+        reviewId: reviewData.id
+    })
+
+
+    const newImg = await ReviewImage.findOne({
+        where: {
+            url: img
+        }
+    })
+
+    const plainImg = newImg.toJSON();
+    delete plainImg.createdAt;
+    delete plainImg.updatedAt;
+    delete plainImg.reviewId;
+
+    res.json(plainImg)
+})
+
+// Edit Review
+router.put('/:reviewId', requireAuth, /*validator*/ async (req, res) => {
+    // needs a validator
+})
+
+// Delete a Review
+router.delete('/:reviewId', requireAuth, async (req, res) => {
+    const userId = req.user.id;
+    const reviewId = req.params.reviewId;
+    const review = await Review.findOne({
+        where: {
+            id: reviewId
+        }
+    })
+
+
+    // authorize user and verify review exists
+    if(!review){
+        return res.status(404).json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    };
+    if(review.userId !== userId){
+        return res.status(403).json({
+            message: "Forbidden",
+            statusCode: 403
+        })
+    };
+
+    Review.destroy({
+        where: {
+            id: reviewId
+        }
+    })
+
+    res.status(200).json({
+        message: "Successfully deleted",
+        statusCode: 200
+    })
+
+})
 
 module.exports = router;

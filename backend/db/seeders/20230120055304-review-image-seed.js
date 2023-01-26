@@ -1,5 +1,10 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+};
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -12,7 +17,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('ReviewImages', [
+    options.tableName = 'ReviewImages';
+    await queryInterface.bulkInsert(options, [
       {
       reviewId: 1,
       url: 'https://ap.rdcpix.com/b712a2d26a057e50b25f03f4c3ec55efl-m3657475885od-w1024_h768_x2.webp',
@@ -35,7 +41,8 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('ReviewImages', [
+    options.tableName = 'ReviewImages';
+    await queryInterface.bulkDelete(options, [
       {
         reviewId: 1,
         url: 'https://ap.rdcpix.com/b712a2d26a057e50b25f03f4c3ec55efl-m3657475885od-w1024_h768_x2.webp',

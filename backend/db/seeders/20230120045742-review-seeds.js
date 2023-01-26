@@ -2,6 +2,11 @@
 
 const { User, Spots } = require('../models');
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+};
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -14,7 +19,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Reviews', [
+    options.tableName = 'Reviews'
+    await queryInterface.bulkInsert(options, [
       {
         userId: 2,
         spotId: 1,
@@ -43,8 +49,9 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    options.tableName = 'Reviews'
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete('Reviews', {
+    await queryInterface.bulkDelete(options, {
       review: { [Op.in]: ['Excellent location! Great pub near by!', 'Quiet with lovely nearby views of the Beartooth and Absaroka Mtns.', 'Great budget evening stay!']}
     });
   }

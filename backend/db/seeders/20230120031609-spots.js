@@ -1,5 +1,10 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+};
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -12,7 +17,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Spots', [
+   options.tableName = 'Spots'
+    await queryInterface.bulkInsert(options, [
       {
       ownerId: '1',
       address: '49 Vanderlin Park',
@@ -71,8 +77,9 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    options.tableName = 'Spots'
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete('Spots', {
+    await queryInterface.bulkDelete(options, {
       address: { [Op.in]: ['49 Vanderlin Park', '4605 Bowman Drive', '27341 Dartmouth Street', '13 Whitetail Drive']}
     });
   }

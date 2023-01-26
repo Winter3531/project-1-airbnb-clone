@@ -100,7 +100,9 @@ router.get('/', async (req, res) => {
         delete spot.SpotImages
     })
 
-    res.json(spotsList)
+    res.json({
+        Spots: spotsList
+    })
 })
 
 // Get all Spots owned by Current User
@@ -399,6 +401,7 @@ router.post('/:spotId/reviews', requireAuth, reviewValidation, async (req, res) 
             statusCode: 404
         })
     }
+    console.log(userId)
 
     // user already has a review for the spot?
     for await ( rev of spot.Reviews){
@@ -411,20 +414,24 @@ router.post('/:spotId/reviews', requireAuth, reviewValidation, async (req, res) 
 
     }
 
+
     const reviewData = Review.create({
-        userId: userId,
-        spotId: spotId,
+        userId,
+        spotId,
         review: req.body.review,
         stars: req.body.stars
     })
 
     const newReview = await Review.findOne({
-        where: reviewData
+        where: {
+            spotId: spotId,
+            userId: userId
+        }
     })
 
 
 
-    res.json(newReview)
+    res.status(201).json(newReview)
 })
 
 // Delete Spot

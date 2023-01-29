@@ -53,7 +53,6 @@ Returns the information about the current user that is logged in.
 * Request
   * Method: GET
   * URL: /api/session
-          /*** Could be just /API/User though because its the logged in user not a specific "searched" user ***/
   * Body: none
 
 * Successful Response when there is a logged in user
@@ -95,7 +94,6 @@ information.
 * Request
   * Method: POST
   * URL: /api/session
-          /*** Really not sure of the URL ***/
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -165,7 +163,6 @@ user's information.
 * Request
   * Method: POST
   * URL: /api/users
-        /*** It makes sense for this to be /API/User if the first GET was just /API/User ***/
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -300,7 +297,6 @@ Returns all the spots owned (created) by the current user.
 * Request
   * Method: GET
   * URL: /api/spots/current
-          /*** Could also be /API/User/Spots but im not thinking it is w/o a body im not sure we can get the userId without the req.param.userId ***/
   * Body: none
 
 * Successful Response
@@ -482,7 +478,6 @@ Create and return a new image for a spot specified by id.
 * Request
   * Method: POST
   * URL: /api/spots/:spotId/images
-        /*** i feel like it needs to be specified that your adding an image in the URL ***/
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1016,7 +1011,6 @@ Return all the bookings that the current user has made.
 * Request
   * Method: GET
   * URL: /api/bookings/current
-  /*** could be /API/bookings/:userId ***/
   * Body: none
 
 * Successful Response

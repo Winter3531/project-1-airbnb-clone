@@ -81,15 +81,15 @@ router.get('/', async (req, res) => {
                 model: SpotImage
             }
         ],
-        attributes: {
-            include: [
-                [sequelize.literal(`(
-                    SELECT AVG(stars)
-                    FROM Reviews
-                    WHERE spotId = Spot.id)`
-                ), "avgRating"],
-            ]
-        }
+        // attributes: {
+        //     include: [
+        //         [sequelize.literal(`(
+        //             SELECT AVG(stars)
+        //             FROM Reviews
+        //             WHERE spotId = Spot.id)`
+        //         ), "avgRating"],
+        //     ]
+        // }
     });
 
     const spotsList = [];
@@ -97,7 +97,8 @@ router.get('/', async (req, res) => {
         spotsList.push(spot.toJSON());
     })
 
-    spotsList.forEach(spot => {
+    // spotsList.forEach(spot => {
+    for await (let spot of spotsList) {
         spot.SpotImages.forEach(image => {
             if (image.preview === true) {
                 spot.previewImage = image.url
@@ -106,11 +107,24 @@ router.get('/', async (req, res) => {
         if (!spot.previewImage) {
             spot.previewImage = 'None'
         }
+        // avgRating
+        const reviews = await Review.findAll({
+            where: {
+                spotId: spot.id
+            }
+        })
+        let count = 0
+        for await (let rev of reviews) {
+            count += Number(rev.stars);
+        }
+        const avg = count / reviews.length;
+        spot.avgRating = avg;
         if (!spot.avgRating) {
             spot.avgRating = 'None'
         }
+
         delete spot.SpotImages
-    })
+    }
 
     res.json({
         Spots: spotsList
@@ -131,22 +145,23 @@ router.get('/current', requireAuth, async (req, res, next) => {
                 model: Review
             }
         ],
-        attributes: {
-            include: [
-                [sequelize.literal(`(
-                    SELECT AVG(stars)
-                    FROM Reviews
-                    WHERE spotId = Spot.id)`
-                ), "avgRating"],
-            ]
-        }
+        // attributes: {
+        //     include: [
+        //         [sequelize.literal(`(
+        //             SELECT AVG(stars)
+        //             FROM Reviews
+        //             WHERE spotId = Spot.id)`
+        //         ), "avgRating"],
+        //     ]
+        // }
     })
     const spotsList = [];
     allSpots.forEach(spots => {
         spotsList.push(spots.toJSON());
     });
 
-    spotsList.forEach(spot => {
+    // spotsList.forEach(spot => {
+    for await (let spot of spotsList) {
         delete spot.Reviews
         spot.SpotImages.forEach(images => {
             if (images.preview === true) {
@@ -156,11 +171,23 @@ router.get('/current', requireAuth, async (req, res, next) => {
         if (!spot.previewImage) {
             spot.previewImage = 'None'
         }
+        // avgRating
+        const reviews = await Review.findAll({
+            where: {
+                spotId: spot.id
+            }
+        })
+        let count = 0
+        for await (let rev of reviews) {
+            count += Number(rev.stars);
+        }
+        const avg = count / reviews.length;
+        spot.avgRating = avg;
         if (!spot.avgRating) {
             spot.avgRating = 'None'
         }
         delete spot.SpotImages
-    })
+    }
 
 
     res.json({
@@ -187,20 +214,20 @@ router.get('/:spotId', async (req, res, next) => {
                 model: User
             }
         ],
-        attributes: {
-            include: [
-                [sequelize.literal(`(
-                    SELECT COUNT(*)
-                    FROM Reviews
-                    WHERE spotId = ${id}
-                )`), "numReviews"],
-                [sequelize.literal(`(
-                    SELECT AVG(stars)
-                    FROM Reviews
-                    WHERE spotId = ${id})`
-                ), "avgStarRating"],
-            ],
-        },
+        // attributes: {
+        //     include: [
+        //         [sequelize.literal(`(
+        //             SELECT COUNT(*)
+        //             FROM Reviews
+        //             WHERE spotId = ${id}
+        //         )`), "numReviews"],
+        //         // [sequelize.literal(`(
+        //         //     SELECT AVG(stars)
+        //         //     FROM Reviews
+        //         //     WHERE spotId = ${id})`
+        //         // ), "avgStarRating"],
+        //     ],
+        // },
     })
 
     if (!spot) {
@@ -219,11 +246,22 @@ router.get('/:spotId', async (req, res, next) => {
     delete spotData.Owner.username
     delete spotData.User
 
-    delete spotData.Reviews
+    // avgRating
+    let count = 0
+    for await (let rev of spotData.Reviews) {
+        count += Number(rev.stars);
+    }
+    const avg = count / spotData.Reviews.length;
+    spotData.avgStarRating = avg;
 
     if (!spotData.avgStarRating) {
         spotData.avgStarRating = 'None'
     }
+
+    // numReviews
+    spotData.numReviews = spotData.Reviews.length
+
+    delete spotData.Reviews
 
     spotData.SpotImages.forEach(spot => {
         delete spot.spotId;

@@ -87,15 +87,15 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         include: {
             model: ReviewImage
         },
-        attributes: {
-            include: [
-                [sequelize.literal(`(
-                    SELECT COUNT(*)
-                    FROM ReviewImages
-                    WHERE reviewId = ${reviewId}
-                )`), "imgCount"],
-            ]
-        }
+        // attributes: {
+        //     include: [
+        //         [sequelize.literal(`(
+        //             SELECT COUNT(*)
+        //             FROM ReviewImages
+        //             WHERE reviewId = ${reviewId}
+        //         )`), "imgCount"],
+        //     ]
+        // }
     })
 
     // authorize user and verify review exists
@@ -112,8 +112,13 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         })
     };
 
-
+    // create imgCount
     const reviewData = review.toJSON();
+    const imgCount = reviewData.ReviewImages.length;
+    reviewData.imgCount = imgCount
+
+    console.log(reviewData.imgCount)
+
     // check for image count
     if(reviewData.imgCount === 10){
         return res.status(403).json({

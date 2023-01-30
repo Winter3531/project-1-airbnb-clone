@@ -34,6 +34,10 @@ router.post('/', validateLogin, async (req, res, next) => {
     }
 
     await setTokenCookie(res, user);
+    // create object to return 
+    const resObject = {
+        id: user.id
+    }
 
     return res.json({
         user: user

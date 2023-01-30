@@ -7,6 +7,7 @@ const user = require('../../db/models/user');
 const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator')
+const {Op} = require('sequelize')
 
 const router = express.Router();
 
@@ -75,7 +76,27 @@ const reviewValidation = [
 
 /*************** Get All Spots *******************/
 router.get('/', async (req, res) => {
+    // get req and query data
+    let { page, size, minLat, maxLat, minLng,
+         maxLng, minPrice, maxPrice } = req.query
+    page = Number(page);
+    size = Number(size);
+
+    if (!size || size > 20 || size < 0) size = 20
+    if (!page || page > 10 || page < 0) page = 1
+    if (!minLat) minLat = -90
+    if (!maxLat) maxLat = 90
+    if (!minLng) minLng = -180
+    if (!maxLng) maxLng = 180
+    if (!minPrice) minPrice = 0
+    if (!maxPrice) maxPrice = 100000
+    // get all spots
     const allSpots = await Spot.findAll({
+        where:{
+            lat: {[Op.between]: [minLat, maxLat],},
+            lng: {[Op.between]: [minLng, maxLng],},
+            price: {[Op.between]: [minPrice, maxPrice],},
+        },
         include: [
             {
                 model: SpotImage
@@ -90,6 +111,8 @@ router.get('/', async (req, res) => {
         //         ), "avgRating"],
         //     ]
         // }
+        limit: size,
+        offset: (page - 1)* size
     });
 
     const spotsList = [];
@@ -125,10 +148,15 @@ router.get('/', async (req, res) => {
 
         delete spot.SpotImages
     }
+    spotsList.page = page;
+    spotsList.size = size;
 
     res.json({
-        Spots: spotsList
+        Spots: spotsList,
+        page,
+        size
     })
+    // res.json(allSpots)
 })
 
 /**************** Get all Spots owned by Current User ***************/

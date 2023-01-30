@@ -227,8 +227,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
 router.get('/:spotId', async (req, res, next) => {
     const id = req.params.spotId;
 
-    // console.log(id)
-
     const spot = await Spot.findOne({
         where: {
             id: id
@@ -310,7 +308,7 @@ router.post('/', requireAuth, validateNewSpot, async (req, res, next) => {
     newSpotData.ownerId = userId;
 
     // create the spot
-    Spot.create(newSpotData);
+    await Spot.create(newSpotData);
 
     // obtain the created spot for the response
     const spot = await Spot.findOne({
@@ -355,7 +353,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     newSpotData.spotId = spotId
 
     // make the spot
-    SpotImage.create(newSpotData)
+    await SpotImage.create(newSpotData)
 
     // pull the made spot for response
     const newImg = await SpotImage.findOne({
@@ -400,7 +398,7 @@ router.put('/:spotId', requireAuth, validateNewSpot, async (req, res, next) => {
         })
     };
 
-    spot.update(spotData)
+    await spot.update(spotData)
 
     res.status(200).json(spot)
 
@@ -493,7 +491,7 @@ router.post('/:spotId/reviews', requireAuth, reviewValidation, async (req, res) 
     }
 
 
-    const reviewData = Review.create({
+    const reviewData = await Review.create({
         userId,
         spotId,
         review: req.body.review,

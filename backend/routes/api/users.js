@@ -37,8 +37,8 @@ const validateSignUp = [
 // Sign up
 router.post('/', validateSignUp, async (req, res) => {
     const {firstName, lastName, email, username, password} = req.body;
-    const foundUser = User.findOne({
-        wherre: {
+    const foundUser = await User.findOne({
+        where: {
             email: email
         }
     })

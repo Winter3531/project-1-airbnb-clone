@@ -19,7 +19,7 @@ const reviewValidation = [
     handleValidationErrors
 ]
 
-// Get all Reviews by current User
+/************* Get all Reviews by current User ***************/
 router.get('/current', requireAuth, async (req, res) => {
     // get the review
     const reviews = await Review.findAll({
@@ -74,7 +74,7 @@ router.get('/current', requireAuth, async (req, res) => {
     });
 })
 
-// Add an Image to a Review by ID
+/************* Add an Image to a Review by ID ****************/
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     // get req data
     const userId = req.user.id;
@@ -129,7 +129,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 
 
     // add the image
-    ReviewImage.create({
+    await ReviewImage.create({
         url: img,
         reviewId: reviewData.id
     })
@@ -149,7 +149,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     res.json(plainImg)
 })
 
-// Edit Review
+/************** Edit Review *****************/
 router.put('/:reviewId', requireAuth, reviewValidation, async (req, res) => {
     // get req data
     const reviewId = req.params.reviewId
@@ -176,7 +176,7 @@ router.put('/:reviewId', requireAuth, reviewValidation, async (req, res) => {
     }
 
     // update review
-    review.update({
+    await review.update({
         userId: userId,
         spotId: review.spotId,
         review: req.body.review,
@@ -187,7 +187,7 @@ router.put('/:reviewId', requireAuth, reviewValidation, async (req, res) => {
     res.json(review)
 })
 
-// Delete a Review
+/************* Delete a Review ***************/
 router.delete('/:reviewId', requireAuth, async (req, res) => {
     const userId = req.user.id;
     const reviewId = req.params.reviewId;

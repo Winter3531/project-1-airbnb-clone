@@ -8,6 +8,7 @@ const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
 
+/************* Delete Review Image ***********/
 router.delete('/:imageId', requireAuth, async (req, res) => {
         // get req data
         const user = req.user.id

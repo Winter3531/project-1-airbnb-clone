@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
+import { NavLink, Route } from 'react-router-dom'
 
 import { allSpotThunk } from "../../store/spots"
 import './spots.css'
+import SpotDetails from "./SpotDetails"
 
 export default function SpotsDisplay() {
 
@@ -11,26 +13,25 @@ export default function SpotsDisplay() {
 
 
     useEffect(() => {
-        console.log("made it here");
         dispatch(allSpotThunk())
     }, [dispatch])
-
-    console.log("xyxyxyxyxyxy", allSpots)
 
     return (
         <div className='spots-container'>
             {allSpots.map(spot => {
                 return (
-
-                    <div className='spot-card' key={spot.id}>
-                        {spot.name}
-                        <img src={spot.previewImage} alt={`previewimg${spot.id}`} height={300} width={300} />
-                        {spot.avgRating}
-                        ${spot.price} night
+                    <div className='spot-card' key={spot.id} >
+                        <NavLink
+                            to={`/spots/${spot.id}`}
+                        >
+                            <label>{spot.name}</label>
+                            <img src={spot.previewImage} alt={`previewimg${spot.id}`} height={300} width={300} />
+                        </NavLink>
+                        <p>{spot.avgRating}</p>
+                        <p>${spot.price} night</p>
                     </div>
                 )
             })}
-
         </div>
     )
 }

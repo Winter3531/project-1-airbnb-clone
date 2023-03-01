@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import Navigation from './components/Navigation';
 import * as sessionActions from './store/session'
+import SpotsDisplay from './components/SpotsDisplay';
 
 function App() {
 
@@ -18,6 +19,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch >
+          <Route path='/api/spots' >
+            <SpotsDisplay />
+          </Route>
         </Switch>
       )}
     </>

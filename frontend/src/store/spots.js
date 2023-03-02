@@ -30,6 +30,7 @@ export const spotDataThunk = (spotId) => async (dispatch) => {
     const data = await response.json();
 
     dispatch(spotData(data))
+    console.log("LOG FROM THE THUNK", data)
     return response;
 }
 
@@ -44,12 +45,12 @@ export default function spotsReducer(state = {}, action) {
 
             return {
                 ...newState,
-                ...state
             };
 
         case DETAILS_SPOT:
+            console.log("FROM THE REDUCER", action.spotId)
             return {
-                ...state,
+                // ...state,
                 details: action.spotId
             }
 

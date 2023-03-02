@@ -10,18 +10,28 @@ export default function SpotDetails () {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        console.log("in the useEffect", spotId)
         dispatch(spotDataThunk(spotId))
     }, [dispatch])
 
-    const spot = useSelector(state => state.spots.details)
+    const spot = useSelector(state => state?.spots?.details)
 
-    console.log()
+    console.log("LOG FROM THE DETAIL COMPONENT", spot)
+
+    // const imagesUrl = []
+    // spot.SpotImages.map(image => {
+    //     imagesUrl.push(image.url)
+    // })
+
+    // console.log(imagesUrl)
 
 return (
     <div>
-        Spot!
-        {spot.address}
-        {spot.SpotImages.map(image => <img src={image.url} />)}
+        {/* {spot.SpotImages.map(image =>  <img src={image.url} />)} */}
+        {/* <p>{spot.address} {spot.city}, {spot.state}, {spot.country}</p> */}
+        {/* <p>{spot.Owner.firstName} {spot.Owner.lastName}</p> */}
+        {/* <p>{spot.description}</p> */}
+        {/* <p>${spot.price}/night</p> */}
     </div>
 )
 }

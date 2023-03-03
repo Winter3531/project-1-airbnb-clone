@@ -20,7 +20,7 @@ export default function SpotsDisplay() {
         <div className='spots-container'>
             {allSpots.map(spot => {
                 return (
-                    <div className='spot-card' key={spot.id} >
+                    <div className='spot-card' key={`spotId-${spot.id}`} >
                         <NavLink
                             to={`/spots/${spot.id}`}
                         >

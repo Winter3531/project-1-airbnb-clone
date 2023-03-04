@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import { createSpotThunk } from "../../store/spots";
+import SpotsDisplay from './index'
 
 export default function CreateSpot() {
     const [country, setCountry] = useState('');
@@ -34,12 +36,39 @@ export default function CreateSpot() {
         lng: 50,
     }
 
-    const handleSubmit = (e) => {
-        dispatch(createSpotThunk(newSpot))
-        // history.push('/spots')
-        e.preventDefault()
+    const imagesArr = [previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4];
+
+    const newImgObj = []
+    for (let i = 0; i < imagesArr.length; i++) {
+        let image = imagesArr[i];
+        if (image) {
+            if (i === 0) {
+                newImgObj.push(
+                    {
+                        url: image,
+                        preview: true
+                    }
+                )
+            }
+            if (i > 0) {
+                newImgObj.push(
+                    {
+                        url: image,
+                        preview: false
+                    }
+                )
+            }
+        }
     }
 
+    async function handleSubmit (e) {
+        e.preventDefault()
+        let createdSpot = await dispatch(createSpotThunk(newSpot, newImgObj))
+
+        console.log('*************', createdSpot)
+
+        history.push(`/spots/${createdSpot.id}`)
+    }
 
     return (
         <form className="create-form" onSubmit={handleSubmit}>

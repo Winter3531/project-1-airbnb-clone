@@ -45,16 +45,28 @@ export const spotDataThunk = (spotId) => async (dispatch) => {
     }
 }
 
-export const createSpotThunk = (spotObj) => async (dispatch) => {
+export const createSpotThunk = (spotObj, images) => async (dispatch) => {
     const newSpot = await csrfFetch(`/api/spots`, {
         method: 'POST',
         body: JSON.stringify(spotObj)
     });
 
-    if (newSpot.ok){
-        const spot = await newSpot.json();
-        dispatch(createSpot(spot))
+    const spot = await newSpot.json();
+
+    let num = 1
+    for await (let image of images) {
+        const addImage = await csrfFetch(`/api/spots/${spot.id}/images`, {
+            method: 'POST',
+            body: JSON.stringify(image)
+        });
+
+        if (addImage.ok) console.log(num++)
     }
+    if (newSpot.ok) {
+        dispatch(createSpot(spot))
+        return spot
+    }
+
 }
 
 export default function spotsReducer(state = {}, action) {
@@ -77,7 +89,7 @@ export default function spotsReducer(state = {}, action) {
             }
 
         case CREATE_SPOT:
-            const addedState = { ...state.spots};
+            const addedState = { ...state.spots };
             console.log("in the reducer", addedState)
             addedState[action.newSpot.id] = action.newSpot;
 

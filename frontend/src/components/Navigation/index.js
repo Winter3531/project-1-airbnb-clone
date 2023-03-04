@@ -10,10 +10,15 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li>
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/spots">Home</NavLink>
       </li>
       {isLoaded && (
         <li>
+          <NavLink to="/spots/new" >
+            <button className='create-spot-button' >
+              Create Spot
+            </button>
+          </NavLink>
           <ProfileButton user={sessionUser} />
         </li>
       )}

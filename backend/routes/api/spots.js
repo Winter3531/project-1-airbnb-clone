@@ -143,7 +143,7 @@ router.get('/', async (req, res) => {
         const avg = count / reviews.length;
         spot.avgRating = avg;
         if (!spot.avgRating) {
-            spot.avgRating = 'None'
+            spot.avgRating = 'New'
         }
 
         delete spot.SpotImages

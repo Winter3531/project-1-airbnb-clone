@@ -17,18 +17,20 @@ export default function SpotDetails() {
     return (
         <div>
             {spot && (
-                <div>
+                <div className="spot-details">
                     <h1>{spot.name}</h1>
+                    <h3>{spot.city}, {spot.state}, {spot.country}</h3>
                     {spot.SpotImages.map(image => <img src={image.url} alt={`imageId-${image.id}`} key={image.id} />)}
-                    <p>{spot.city}, {spot.state}, {spot.country}</p>
-                    <p>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</p>
+                    <div>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</div>
                     <p>{spot.description}</p>
-                    <p>${spot.price}/night</p>
+                    <div className="callout-box" >
+                        <div>${spot.price}/night</div>
+                        <button
+                            onClick={e => alert("Feature coming soon!")}
+                        >Reserve</button>
+                    </div>
                 </div>
             )}
-            <button
-                onClick={e => alert("Feature coming soon!")}
-            >Reserve</button>
         </div>
     )
 }

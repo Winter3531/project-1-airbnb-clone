@@ -1,0 +1,15 @@
+.spot-card {
+    height: 400px;
+    width: 400px;
+    border: 2px solid black;
+    margin: 40px;
+}
+
+.user-spots {
+    display: flex;
+    align-items: space-between;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+}

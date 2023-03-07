@@ -195,7 +195,7 @@ export default function UpdateSpotDetails() {
                     ></input> */}
 
                     <button type="submit" >
-                        Create Spot
+                        Update Spot
                     </button>
                 </form>
             )}

@@ -7,9 +7,11 @@ import './manageSpots.css'
 
 
 export default function ManageSpots() {
-    const allSpots = useSelector(state => Object.values(state?.spots));
+    let allSpots = useSelector(state => Object.values(state?.spots));
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state?.session.user)
 
+    allSpots = allSpots.filter(spot => spot.ownerId == sessionUser.id)
     useEffect(() => {
         dispatch(currentSpotsThunk())
     }, [dispatch]);
@@ -23,7 +25,7 @@ export default function ManageSpots() {
 
     return (
         <div>
-            {allSpots ? (
+            {allSpots.length ? (
                 <div>
                     <h1>Manage Spots</h1>
                     <div className={div_name} >
@@ -57,12 +59,12 @@ export default function ManageSpots() {
                 </div>
             ) : (
                 <div className={div_name}>
-                    <h1>You have not created any spots yet.</h1>
                     <NavLink to="/spots/new">
                         <button>
                             Create a New Spot
                         </button>
                     </NavLink>
+                    <h1>You have not created any spots yet.</h1>
                 </div>
             )}
         </div>

@@ -1,8 +1,8 @@
 import { useParams, useHistory } from "react-router-dom"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { spotDataThunk, updateSpotThunk } from "../../store/spots";
+import { updateSpotThunk } from "../../store/spots";
 
 
 // ******************* COMMENTED CODE IS FOR UPDATING ALL PICTURES ********

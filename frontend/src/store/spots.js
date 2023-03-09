@@ -143,8 +143,9 @@ export default function spotsReducer(state = {}, action) {
 
         case DETAILS_SPOT:
             return {
-                ...state,
-                details: action.spotId
+                // ...state,
+                // details: action.spotId
+                ...state, [action.spotId.id]: action.spotId
             }
 
         case CREATE_SPOT:

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 
 import { useModal } from '../../context/Modal';
 import { addReviewThunk, spotReviewsThunk } from "../../store/reviews";
+import { spotDataThunk } from "../../store/spots";
 
 export default function PostReviewModal ({spotId}) {
 
@@ -21,7 +22,7 @@ export default function PostReviewModal ({spotId}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await dispatch(addReviewThunk(newReview, spotId))
-        .then(dispatch(spotReviewsThunk()))
+        .then(dispatch(spotDataThunk(spotId)))
         .then(closeModal)
     }
 

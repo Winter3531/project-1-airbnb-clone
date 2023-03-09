@@ -16,10 +16,10 @@ export default function SpotDetails() {
     useEffect(() => {
         dispatch(spotDataThunk(spotId));
         dispatch(spotReviewsThunk(spotId));
-    }, [dispatch, spotId])
+    }, [dispatch, spotId], showMenu)
 
     const sessionUser = useSelector(state => state?.session?.user?.id)
-    const spot = useSelector(state => state?.spots?.details);
+    const spot = useSelector(state => state?.spots[spotId]);
     const allReviews = useSelector(state => Object.values(state?.reviews)).reverse();
 
     const pluralReview = spot?.numReviews > 1 ? 'Reviews' : 'Review'
@@ -34,8 +34,8 @@ export default function SpotDetails() {
                 <div className="spot-details">
                     <h2>{spot.name}</h2>
                     <h3>{spot.city}, {spot.state}, {spot.country}</h3>
-                    {spot.SpotImages.map(image => <img src={image.url} alt={`imageId-${image.id}`} key={image.id} />)}
-                    <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+                    {spot?.SpotImages?.map(image => <img src={image.url} alt={`imageId-${image.id}`} key={image.id} />)}
+                    <h2>Hosted by {spot?.Owner?.firstName} {spot?.Owner?.lastName}</h2>
                     <p>{spot.description}</p>
                     <div className="callout-box" >
                         {dotNoDot}
@@ -54,9 +54,9 @@ export default function SpotDetails() {
                             <div>
                                 {allReviews && allReviews.map(review => (
                                     <div key={`review-${review.id}`} >
-                                        <h3>{review.User.firstName} {review.User.lastName}</h3>
-                                        <p>{review.createdAt}</p>
-                                        <p>{review.review}</p>
+                                        <h3>{review?.User?.firstName} {review?.User?.lastName}</h3>
+                                        <p>{review?.createdAt}</p>
+                                        <p>{review?.review}</p>
                                     </div>
                                 ))}
                             </div>

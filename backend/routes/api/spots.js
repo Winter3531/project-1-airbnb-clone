@@ -281,7 +281,7 @@ router.get('/:spotId', async (req, res, next) => {
     spotData.avgStarRating = avg;
 
     if (!spotData.avgStarRating) {
-        spotData.avgStarRating = 'None'
+        spotData.avgStarRating = 'New'
     }
 
     // numReviews

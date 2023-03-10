@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-import { Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { createSpotThunk } from "../../store/spots";
-import SpotsDisplay from './index'
 
 export default function CreateSpot() {
     const [country, setCountry] = useState('');
@@ -32,8 +30,8 @@ export default function CreateSpot() {
         name,
         description,
         price,
-        lat: 50,
-        lng: 50,
+        lat: 45.72967,
+        lng: -108.52902,
     }
 
     const imagesArr = [previewImage, imageUrl1, imageUrl2, imageUrl3, imageUrl4];
@@ -63,9 +61,8 @@ export default function CreateSpot() {
 
     async function handleSubmit (e) {
         e.preventDefault()
+        // ADD VALIDATIONS HERE USING STATE AND AN ERRORS ARRAY
         let createdSpot = await dispatch(createSpotThunk(newSpot, newImgObj))
-
-        console.log('*************', createdSpot)
 
         history.push(`/spots/${createdSpot.id}`)
     }
@@ -102,7 +99,7 @@ export default function CreateSpot() {
             <label>State</label>
             <input
                 type="text"
-                placeholder="STATE"
+                placeholder="State"
                 value={state}
                 onChange={e => setSTATE(e.target.value)}
             ></input>

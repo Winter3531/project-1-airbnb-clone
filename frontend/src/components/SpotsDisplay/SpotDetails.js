@@ -18,6 +18,21 @@ export default function SpotDetails() {
     const spot = useSelector(state => state?.spots[spotId]);
     const allReviews = useSelector(state => Object.values(state?.reviews)).reverse();
 
+    const MONTHS = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "Spetember",
+        "October",
+        "November",
+        "December"
+    ]
+
     useEffect(() => {
         dispatch(spotDataThunk(spotId));
         dispatch(spotReviewsThunk(spotId));
@@ -56,7 +71,8 @@ export default function SpotDetails() {
                                 {allReviews && allReviews.map(review => (
                                     <div key={`review-${review.id}`} >
                                         <h3>{review?.User?.firstName} {review?.User?.lastName}</h3>
-                                        <p>{review?.createdAt}</p>
+                                        {console.log(MONTHS[(Number(review?.createdAt.slice(4,7))) - 1])}
+                                        <p>{MONTHS[(Number(review?.createdAt.slice(5,7))) - 1]} {review?.createdAt.slice(0,4)}</p>
                                         <p>{review?.review}</p>
                                         {review.userId === sessionUser && (
                                                 <OpenModalButton

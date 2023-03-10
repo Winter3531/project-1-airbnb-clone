@@ -6,6 +6,7 @@ import { spotReviewsThunk } from "../../store/reviews";
 import { spotDataThunk } from "../../store/spots";
 import PostReviewModal from "./PostReviewModal";
 import OpenModalButton from "../OpenModalButton";
+import ReviewDelete from "./ReviewDelete";
 
 
 export default function SpotDetails() {
@@ -13,14 +14,14 @@ export default function SpotDetails() {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
 
-    useEffect(() => {
-        dispatch(spotDataThunk(spotId));
-        dispatch(spotReviewsThunk(spotId));
-    }, [dispatch, spotId], showMenu)
-
     const sessionUser = useSelector(state => state?.session?.user?.id)
     const spot = useSelector(state => state?.spots[spotId]);
     const allReviews = useSelector(state => Object.values(state?.reviews)).reverse();
+    
+    useEffect(() => {
+        dispatch(spotDataThunk(spotId));
+        dispatch(spotReviewsThunk(spotId));
+    }, [dispatch, allReviews?.length])
 
     const pluralReview = spot?.numReviews > 1 ? 'Reviews' : 'Review'
 
@@ -57,6 +58,13 @@ export default function SpotDetails() {
                                         <h3>{review?.User?.firstName} {review?.User?.lastName}</h3>
                                         <p>{review?.createdAt}</p>
                                         <p>{review?.review}</p>
+                                        {review.userId === sessionUser && (
+                                                <OpenModalButton
+                                                    buttonText="Delete Review"
+                                                    onButtonClick={closeMenu}
+                                                    modalComponent={<ReviewDelete reviewId={review.id} spotId={spotId}/>}
+                                                />
+                                        )}
                                     </div>
                                 ))}
                             </div>

@@ -22,6 +22,7 @@ export default function PostReviewModal ({spotId}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await dispatch(addReviewThunk(newReview, spotId))
+        .then(dispatch(spotReviewsThunk(spotId)))
         .then(dispatch(spotDataThunk(spotId)))
         .then(closeModal)
     }

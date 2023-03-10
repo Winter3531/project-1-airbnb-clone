@@ -18,7 +18,7 @@ export default function ManageSpots() {
 
     const div_name = (allSpots ? "user-spots" : "no-spots");
 
-    function handleDelete (spot) {
+    function handleDelete(spot) {
         // call a delete thunk
         dispatch(deleteSpotThunk(spot.id))
     }
@@ -46,11 +46,11 @@ export default function ManageSpots() {
                                                 Update
                                             </button>
                                         </NavLink>
-                                        <button
-                                            onClick={() => handleDelete(spot)}
-                                        >
-                                            Delete
-                                        </button>
+                                        <OpenModalButton
+                                            buttonText="Delete Spot"
+                                            onButtonClick={closeMenu}
+                                            modalComponent={</>}
+                                        />
                                     </div>
                                 </div>
                             )

@@ -17,11 +17,11 @@ export default function SpotDetails() {
     const sessionUser = useSelector(state => state?.session?.user?.id)
     const spot = useSelector(state => state?.spots[spotId]);
     const allReviews = useSelector(state => Object.values(state?.reviews)).reverse();
-    
+
     useEffect(() => {
         dispatch(spotDataThunk(spotId));
         dispatch(spotReviewsThunk(spotId));
-    }, [dispatch, allReviews?.length])
+    }, [dispatch, allReviews?.length, spotId])
 
     const pluralReview = spot?.numReviews > 1 ? 'Reviews' : 'Review'
 

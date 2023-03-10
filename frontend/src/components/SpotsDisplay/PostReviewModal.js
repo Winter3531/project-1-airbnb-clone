@@ -10,9 +10,10 @@ export default function PostReviewModal ({spotId}) {
     const dispatch = useDispatch()
 
     const [review, setReview] = useState('')
-    const [stars, setStars] = useState('')
+    const [stars, setStars] = useState(1)
 
     const { closeModal } = useModal();
+    console.log(review, stars)
 
     const newReview = {
         review,

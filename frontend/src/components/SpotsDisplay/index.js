@@ -26,12 +26,14 @@ export default function SpotsDisplay() {
                                     <NavLink
                                         to={`/spots/${spot.id}`}
                                     >
-                                        <img src={spot.previewImage} alt={`previewimg${spot.id}`} height={300} width={300} />
+                                        <img src={spot.previewImage} alt={`previewimg-${spot.id}`} height={300} width={300} />
                                     </NavLink>
                                     <div className="spot-data">
+                                        <div className="spot-name-price">
                                         <h3>{spot.name}</h3>
-                                        <p>{spot.avgRating}</p>
                                         <p>${spot.price} night</p>
+                                        </div>
+                                        <p className="spot-review"><i className="fa-solid fa-star"></i> {spot.avgRating}</p>
                                     </div>
                                 </div>
                             </>

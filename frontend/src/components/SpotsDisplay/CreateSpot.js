@@ -11,12 +11,13 @@ export default function CreateSpot() {
     const [state, setSTATE] = useState('');
     const [description, setDescription] = useState('');
     const [name, setName] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState('');
     const [previewImage, setPreviewImage] = useState('');
     const [imageUrl1, setImageUrl1] = useState('');
     const [imageUrl2, setImageUrl2] = useState('');
     const [imageUrl3, setImageUrl3] = useState('');
     const [imageUrl4, setImageUrl4] = useState('');
+    const [errors, setErrors] = useState([])
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -59,17 +60,32 @@ export default function CreateSpot() {
         }
     }
 
-    async function handleSubmit (e) {
+    async function handleSubmit(e) {
         e.preventDefault()
+        const validationError = []
         // ADD VALIDATIONS HERE USING STATE AND AN ERRORS ARRAY
-        let createdSpot = await dispatch(createSpotThunk(newSpot, newImgObj))
+        if (!country) validationError.push(["Country is required"]);
+        if (!address) validationError.push(["Address is required"]);
+        if (!city) validationError.push(["City is required"]);
+        if (!state) validationError.push(["State is required"]);
+        if (!description) validationError.push(["Description is required"]);
+        if (description.length < 30) validationError.push(["Description must be greater then 30 charachters"]);
+        if (!name) validationError.push(["Name is required"]);
+        if (name.length > 50) validationError.push(["Name must be less than 50 characters"]);
+        if (!price || isNaN(price)) validationError.push(["Price is required and must be a number"])
+        if (!previewImage) validationError.push(["Preview image is required"])
+        if (validationError.length) setErrors(validationError)
 
-        history.push(`/spots/${createdSpot.id}`)
+        let createdSpot = await dispatch(createSpotThunk(newSpot, newImgObj))
+        return history.push(`/spots/${createdSpot.id}`)
     }
 
     return (
         <form className="create-form" onSubmit={handleSubmit}>
             <h1>Create a new Spot</h1>
+            <ul>
+                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
             <h2>Where's your place located?</h2>
             <p>Guests will only get your exact address once they booked a reservation.</p>
             <label>Country</label>

@@ -1,8 +1,8 @@
 .spot-card {
-    height: 400px;
+    height: 200px;
     width: 400px;
     border: 2px solid black;
-    margin: 40px;
+    margin: 10px;
 }
 
 .spots-container {
@@ -17,9 +17,4 @@
 /* The following is not set in stone */
 .spot-data {
     display: flex;
-    align-items:flex-start;
-    justify-content: flex-end;
-    flex-direction: row;
-    width: 100%;
-    flex-wrap: wrap;
 }

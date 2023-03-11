@@ -40,7 +40,7 @@ export default function SpotDetails() {
 
     const pluralReview = spot?.numReviews > 1 ? 'Reviews' : 'Review'
 
-    const dotNoDot = spot?.numReviews < 1 ? <div>"Star" {spot?.avgStarRating}</div> : <div>"Star" {spot?.avgStarRating} · {spot?.numReviews} {pluralReview}</div>
+    const dotNoDot = spot?.numReviews < 1 ? <div><i className="fa-solid fa-star"></i> {spot?.avgStarRating}</div> : <div><i className="fa-solid fa-star"></i> {spot?.avgStarRating} · {spot?.numReviews} {pluralReview}</div>
 
     const closeMenu = () => setShowMenu(false);
 
@@ -71,7 +71,6 @@ export default function SpotDetails() {
                                 {allReviews && allReviews.map(review => (
                                     <div key={`review-${review.id}`} >
                                         <h3>{review?.User?.firstName} {review?.User?.lastName}</h3>
-                                        {console.log(MONTHS[(Number(review?.createdAt.slice(4,7))) - 1])}
                                         <p>{MONTHS[(Number(review?.createdAt.slice(5,7))) - 1]} {review?.createdAt.slice(0,4)}</p>
                                         <p>{review?.review}</p>
                                         {review.userId === sessionUser && (
@@ -88,7 +87,7 @@ export default function SpotDetails() {
                     </div>
                 </div>
             )}
-            {sessionUser !== spot?.ownerId && (
+            {sessionUser && sessionUser !== spot?.ownerId && (
                 <OpenModalButton
                     buttonText="Post Review"
                     onButtonClick={closeMenu}

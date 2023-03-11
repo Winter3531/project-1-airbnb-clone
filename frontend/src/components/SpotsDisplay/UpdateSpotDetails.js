@@ -41,6 +41,7 @@ export default function UpdateSpotDetails() {
     // const [imageUrl2, setImageUrl2] = useState(spotImages[2].url);
     // const [imageUrl3, setImageUrl3] = useState(spotImages[3].url);
     // const [imageUrl4, setImageUrl4] = useState(spotImages[4].url);
+    const [errors, setErrors] = useState([])
 
     const history = useHistory();
 
@@ -85,9 +86,24 @@ export default function UpdateSpotDetails() {
     async function handleSubmit(e) {
         e.preventDefault()
         // ADD VALIDATIONS HERE USING STATE AND AN ERRORS ARRAY
-        dispatch(updateSpotThunk(updatedSpot, spotId))
+        e.preventDefault()
+        const validationError = []
+        // ADD VALIDATIONS HERE USING STATE AND AN ERRORS ARRAY
+        if (!country) validationError.push(["Country is required"]);
+        if (!address) validationError.push(["Address is required"]);
+        if (!city) validationError.push(["City is required"]);
+        if (!state) validationError.push(["State is required"]);
+        if (!description) validationError.push(["Description is required"]);
+        if (description.length < 30) validationError.push(["Description must be greater then 30 charachters"]);
+        if (!name) validationError.push(["Name is required"]);
+        if (name.length > 50) validationError.push(["Name must be less than 50 characters"]);
+        if (!price || isNaN(price)) validationError.push(["Price is required and must be a number"])
+        if (!previewImage) validationError.push(["Preview image is required"])
+        if (validationError.length) return setErrors(validationError)
 
-        history.push(`/spots/${spotId}`)
+        setErrors([])
+        dispatch(updateSpotThunk(updatedSpot, spotId))
+        return history.push(`/spots/${spotId}`)
     }
 
 
@@ -97,6 +113,9 @@ export default function UpdateSpotDetails() {
             {spot && /*spotImages &&*/ (
                 <form className="create-form" onSubmit={handleSubmit}>
                     <h1>Update your Spot</h1>
+                    <ul>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
                     <h2>Where's your place located?</h2>
                     <p>Guests will only get your exact address once they booked a reservation.</p>
                     <label>Country</label>

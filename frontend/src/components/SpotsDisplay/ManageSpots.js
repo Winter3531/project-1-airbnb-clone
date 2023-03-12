@@ -34,35 +34,37 @@ export default function ManageSpots() {
         <>
             {sessionUser && (
 
-                <div>
+                <div className="manage-spots">
                     {allSpots.length ? (
                         <div>
-                            <h1>Manage Spots</h1>
+                            <h1 id="header">Manage Spots</h1>
                             <div className={div_name} >
                                 {allSpots.map(spot => {
                                     return (
-                                        <div className='spot-card' key={`spotId-${spot.id}`} >
-                                            <div className="spot-info" >
-                                                <h3>{spot.name}</h3>
-                                                <img src={spot.previewImage} alt={`previewimg${spot.id}`} height={250} width={320} />
-                                                <p>{spot.avgRating}</p>
-                                                <p>${spot.price} night</p>
+                                        <>
+                                            <div className='manage-spot-card' key={`spotId-${spot.id}`} >
+                                                <div className="manage-spot-info" >
+                                                    <h3>{spot.name}</h3>
+                                                    <img src={spot.previewImage} alt={`previewimg${spot.id}`} id="spot-img" height={290} width={350} />
+                                                    <div className="manage-spot-data" >
+                                                        <p>${spot.price} night</p>
+                                                        <p><i className="fa-solid fa-star"></i>{spot.avgRating}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="update-delete" >
+                                                    <NavLink to={`/spots/update/${spot.id}`} >
+                                                        <button id="spot">
+                                                            Update
+                                                        </button>
+                                                    </NavLink>
+                                                    <OpenModalButton
+                                                        buttonText="Delete Spot"
+                                                        onButtonClick={closeMenu}
+                                                        modalComponent={<SpotDelete spotId={spot.id} />}
+                                                    />
+                                                </div>
                                             </div>
-                                            <div
-                                                className="update-delete"
-                                            >
-                                                <NavLink to={`/spots/update/${spot.id}`} >
-                                                    <button>
-                                                        Update
-                                                    </button>
-                                                </NavLink>
-                                                <OpenModalButton
-                                                    buttonText="Delete Spot"
-                                                    onButtonClick={closeMenu}
-                                                    modalComponent={<SpotDelete spotId={spot.id} />}
-                                                />
-                                            </div>
-                                        </div>
+                                        </>
                                     )
                                 })}
                             </div>

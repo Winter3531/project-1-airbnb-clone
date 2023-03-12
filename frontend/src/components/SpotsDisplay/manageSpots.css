@@ -1,8 +1,44 @@
-.spot-card {
-    height: 400px;
-    width: 400px;
-    border: 2px solid black;
+.manage-spots {
+    font-family: monospace;
+    color: antiquewhite;
+    background-color: rgb(0, 0, 0);
+}
+
+h1#header {
+    text-align: center;
+}
+
+.manage-spot-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    height: 430px;
+    width: 350px;
+    border: 2px solid lightgrey;
     margin: 40px;
+    background-color: lightgrey;
+    color: black;
+    border-radius: 2%;
+}
+
+.manage-spot-data {
+    display: grid;
+    grid-template-columns: 90px 1fr 30px;
+    grid-template-rows: 100%;
+    justify-items: end;
+}
+
+div.update-delete {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+div.update-delete button {
+    height: 35px;
+    width: 90px;
+    font-family: monospace;
+    font-size: small;
 }
 
 .user-spots {

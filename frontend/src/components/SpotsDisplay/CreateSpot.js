@@ -69,7 +69,7 @@ export default function CreateSpot() {
         if (!city) validationError.push(["City is required"]);
         if (!state) validationError.push(["State is required"]);
         if (!description) validationError.push(["Description is required"]);
-        if (description.length < 30) validationError.push(["Description must be greater then 30 charachters"]);
+        if (description.length < 30) validationError.push(["Description must be greater then 30 characters"]);
         if (!name) validationError.push(["Name is required"]);
         if (name.length > 50) validationError.push(["Name must be less than 50 characters"]);
         if (!price || isNaN(price)) validationError.push(["Price is required and must be a number"])
@@ -121,7 +121,7 @@ export default function CreateSpot() {
             ></input>
 
             <h2>Describe your place to guests</h2>
-            <p>Mention the best features of your space, any special amentities like fast wif or parking, and what you love about the neighborhood.</p>
+            <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
 
             <textarea
                 placeholder="Please write at least 30 characters"

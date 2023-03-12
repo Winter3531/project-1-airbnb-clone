@@ -1,5 +1,11 @@
 .hidden {display: none}
 
 ul {
-    background-color: black;
+    background-color: rgb(39, 39, 39);
+}
+
+a:link,
+a:visited {
+    color: lightgrey;
+    text-decoration: none;
 }

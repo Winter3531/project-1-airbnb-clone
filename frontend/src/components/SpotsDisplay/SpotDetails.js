@@ -8,6 +8,9 @@ import PostReviewModal from "./PostReviewModal";
 import OpenModalButton from "../OpenModalButton";
 import ReviewDelete from "./ReviewDelete";
 
+import './spotdetails.css'
+
+
 
 export default function SpotDetails() {
     const { spotId } = useParams();
@@ -40,26 +43,39 @@ export default function SpotDetails() {
 
     const pluralReview = spot?.numReviews > 1 ? 'Reviews' : 'Review'
 
-    const dotNoDot = spot?.numReviews < 1 ? <div><i className="fa-solid fa-star"></i> {spot?.avgStarRating}</div> : <div><i className="fa-solid fa-star"></i> {spot?.avgStarRating} · {spot?.numReviews} {pluralReview}</div>
+    const dotNoDot = spot?.numReviews < 1 ? <div><i className="fa-solid fa-star"></i> {spot?.avgStarRating} </div> : <div><i className="fa-solid fa-star"></i> {spot?.avgStarRating} · {spot?.numReviews} {pluralReview} </div>
 
     const closeMenu = () => setShowMenu(false);
 
     return (
-        <div>
+        <div className="spot-details-page">
             {spot && allReviews && (
                 <div className="spot-details">
-                    <h2>{spot.name}</h2>
+                    <h1>{spot.name}</h1>
                     <h3>{spot.city}, {spot.state}, {spot.country}</h3>
-                    {spot?.SpotImages?.map(image => <img src={image.url} alt={`imageId-${image.id}`} key={image.id} />)}
-                    <h2>Hosted by {spot?.Owner?.firstName} {spot?.Owner?.lastName}</h2>
-                    <p>{spot.description}</p>
-                    <div className="callout-box" >
-                        {dotNoDot}
-                        <div>${spot.price}/night</div>
-                        <button
-                            onClick={e => alert("Feature coming soon!")}
-                        >Reserve</button>
+                    {spot && spot?.SpotImages && (
+                        <div className="images-container">
+                            <img src={spot?.SpotImages[0]?.url} alt={`imageId-preview-image`} height={700} width={900} />
+                            <div className="sub-images-container">
+                                {spot?.SpotImages?.slice(1).map(image => <img src={image.url} alt={`imageId-${image.id}`} key={image.id} height={350} width={450} />)}
+                            </div>
+                        </div>
+                    )}
+                    <div className="spot-description-price-reserve">
+                        <div className="spot-owner-desription">
+                            <h2>Hosted by {spot?.Owner?.firstName} {spot?.Owner?.lastName}</h2>
+                            <p>{spot.description}</p>
+                        </div>
+                        <div className="callout-box" >
+                            {dotNoDot}
+                            <div id="price">${spot.price}/night</div>
+                            <button
+                                id="reserve-button"
+                                onClick={e => alert("Feature coming soon!")}
+                            >Reserve</button>
+                        </div>
                     </div>
+                    <hr></hr>
                     <div className="review-listing" >
                         {dotNoDot}
                         {!allReviews.length && sessionUser !== spot.ownerId ? (
@@ -71,14 +87,14 @@ export default function SpotDetails() {
                                 {allReviews && allReviews.map(review => (
                                     <div key={`review-${review.id}`} >
                                         <h3>{review?.User?.firstName} {review?.User?.lastName}</h3>
-                                        <p>{MONTHS[(Number(review?.createdAt.slice(5,7))) - 1]} {review?.createdAt.slice(0,4)}</p>
+                                        <p>{MONTHS[(Number(review?.createdAt.slice(5, 7))) - 1]} {review?.createdAt.slice(0, 4)}</p>
                                         <p>{review?.review}</p>
                                         {review.userId === sessionUser && (
-                                                <OpenModalButton
-                                                    buttonText="Delete Review"
-                                                    onButtonClick={closeMenu}
-                                                    modalComponent={<ReviewDelete reviewId={review.id} spotId={spotId}/>}
-                                                />
+                                            <OpenModalButton
+                                                buttonText="Delete Review"
+                                                onButtonClick={closeMenu}
+                                                modalComponent={<ReviewDelete reviewId={review.id} spotId={spotId} />}
+                                            />
                                         )}
                                     </div>
                                 ))}

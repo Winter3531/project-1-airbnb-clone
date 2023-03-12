@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 
 import { createSpotThunk } from "../../store/spots";
 
+import './createspot.css'
+
 export default function CreateSpot() {
     const [country, setCountry] = useState('');
     const [address, setAddress] = useState('');
@@ -123,6 +125,7 @@ export default function CreateSpot() {
             <h2>Describe your place to guests</h2>
             <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
 
+            <label>Description</label>
             <textarea
                 placeholder="Please write at least 30 characters"
                 rows="5"
@@ -132,6 +135,7 @@ export default function CreateSpot() {
 
             <h2>Create a title for your spot</h2>
             <p>Catch guests' attention with a spot title that highlights what makes your place special.</p>
+            <label>Name</label>
             <input
                 type="text"
                 placeholder="Name of your spot"
@@ -152,36 +156,39 @@ export default function CreateSpot() {
 
             <h2>Liven up your spot with photos</h2>
             <p>Submit a link to at least one photo to publish your spot.</p>
-            <input
-                type="text"
-                placeholder="Preview Image URL"
-                value={previewImage}
-                onChange={e => setPreviewImage(e.target.value)}
-            ></input>
-            <input
-                type="text"
-                placeholder="Image URL"
-                value={imageUrl1}
-                onChange={e => setImageUrl1(e.target.value)}
-            ></input>
-            <input
-                type="text"
-                placeholder="Image URL"
-                value={imageUrl2}
-                onChange={e => setImageUrl2(e.target.value)}
-            ></input>
-            <input
-                type="text"
-                placeholder="Image URL"
-                value={imageUrl3}
-                onChange={e => setImageUrl3(e.target.value)}
-            ></input>
-            <input
-                type="text"
-                placeholder="Image URL"
-                value={imageUrl4}
-                onChange={e => setImageUrl4(e.target.value)}
-            ></input>
+            
+            <div className="images-inputs">
+                <input
+                    type="text"
+                    placeholder="Preview Image URL"
+                    value={previewImage}
+                    onChange={e => setPreviewImage(e.target.value)}
+                ></input>
+                <input
+                    type="text"
+                    placeholder="Image URL"
+                    value={imageUrl1}
+                    onChange={e => setImageUrl1(e.target.value)}
+                ></input>
+                <input
+                    type="text"
+                    placeholder="Image URL"
+                    value={imageUrl2}
+                    onChange={e => setImageUrl2(e.target.value)}
+                ></input>
+                <input
+                    type="text"
+                    placeholder="Image URL"
+                    value={imageUrl3}
+                    onChange={e => setImageUrl3(e.target.value)}
+                ></input>
+                <input
+                    type="text"
+                    placeholder="Image URL"
+                    value={imageUrl4}
+                    onChange={e => setImageUrl4(e.target.value)}
+                ></input>
+            </div>
 
             <button type="submit" >
                 Create Spot

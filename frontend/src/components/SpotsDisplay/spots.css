@@ -1,7 +1,7 @@
 .all-spots-page {
     display: flex;
     font-family: monospace;
-    background-color: black;
+    background-color: rgb(39, 39, 39);
 }
 
 h1#header {
@@ -51,4 +51,17 @@ h1#header {
 
 #spot-price {
     grid-area: price;
+}
+
+a:visited,
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: rgb(42, 4, 4);
+}
+
+#home {
+    color: lightgrey;
 }

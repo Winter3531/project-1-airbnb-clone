@@ -1,0 +1,16 @@
+.create-form {
+    display: flex;
+    width: 50%;
+    padding-left: 25%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.line-break {
+    border: 2px solid lightgrey;
+}
+
+.images-inputs {
+    
+}

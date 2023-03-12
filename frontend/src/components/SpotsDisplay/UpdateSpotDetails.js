@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { updateSpotThunk } from "../../store/spots";
 
+import './updatespot.css'
+
 
 // ******************* COMMENTED CODE IS FOR UPDATING ALL PICTURES ********
 

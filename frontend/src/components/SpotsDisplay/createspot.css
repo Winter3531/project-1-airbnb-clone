@@ -5,12 +5,73 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: monospace;
 }
 
 .line-break {
     border: 2px solid lightgrey;
+    border-radius: 70%;
+    width: 100%;
 }
 
 .images-inputs {
-    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 75%;
+}
+
+.address-block {
+    display: grid;
+    grid-template-columns: repeat(1fr 3);
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+                "address address address"
+                "city city state"
+                "country country .";
+}
+
+.street-sub-block {
+    grid-area: address;
+}
+
+.street-sub-block input {
+    width: 70%;
+}
+
+.city-sub-block {
+    grid-area: city;
+}
+
+.city-sub-block input {
+    width: 79%;
+}
+
+.state-sub-block {
+    grid-area: state;
+}
+
+.state-sub-block input {
+    width: 74.5%;
+}
+
+.country-sub-block {
+    grid-area: country;
+}
+
+.country-sub-block input {
+    width: 68%;
+}
+
+textarea {
+    width: 75%;
+}
+
+#name-input-block input {
+    width: 75%;
+}
+
+#create-spoit-submit {
+    font-family: monospace;
+
 }

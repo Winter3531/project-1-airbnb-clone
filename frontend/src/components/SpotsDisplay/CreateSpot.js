@@ -90,37 +90,50 @@ export default function CreateSpot() {
             </ul>
             <h2>Where's your place located?</h2>
             <p>Guests will only get your exact address once they booked a reservation.</p>
-            <label>Country</label>
-            <input
-                type="text"
-                placeholder="Country"
-                value={country}
-                onChange={e => setCountry(e.target.value)}
-            ></input>
 
-            <label>Street Address</label>
-            <input
-                type="text"
-                placeholder="Address"
-                value={address}
-                onChange={e => setAddress(e.target.value)}
-            ></input>
+            <div className="address-block">
+                <div className="street-sub-block">
+                    <label>Street Address</label>
+                    <input
+                        type="text"
+                        placeholder="Address"
+                        value={address}
+                        onChange={e => setAddress(e.target.value)}
+                    ></input>
+                </div>
 
-            <label>City</label>
-            <input
-                type="text"
-                placeholder="City"
-                value={city}
-                onChange={e => setCity(e.target.value)}
-            ></input>
+                <div className="city-sub-block">
+                    <label>City</label>
+                    <input
+                        type="text"
+                        placeholder="City"
+                        value={city}
+                        onChange={e => setCity(e.target.value)}
+                    ></input>
+                </div>
 
-            <label>State</label>
-            <input
-                type="text"
-                placeholder="State"
-                value={state}
-                onChange={e => setSTATE(e.target.value)}
-            ></input>
+                <div className="state-sub-block">
+                    <label>State</label>
+                    <input
+                        type="text"
+                        placeholder="State"
+                        value={state}
+                        onChange={e => setSTATE(e.target.value)}
+                    ></input>
+                </div>
+
+                <div className="country-sub-block">
+                    <label>Country</label>
+                    <input
+                        type="text"
+                        placeholder="Country"
+                        value={country}
+                        onChange={e => setCountry(e.target.value)}
+                    ></input>
+                </div>
+            </div>
+
+            <hr className="line-break"></hr>
 
             <h2>Describe your place to guests</h2>
             <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
@@ -133,30 +146,41 @@ export default function CreateSpot() {
                 onChange={e => setDescription(e.target.value)}
             ></textarea>
 
+            <hr className="line-break"></hr>
+
             <h2>Create a title for your spot</h2>
             <p>Catch guests' attention with a spot title that highlights what makes your place special.</p>
-            <label>Name</label>
-            <input
-                type="text"
-                placeholder="Name of your spot"
-                value={name}
-                onChange={e => setName(e.target.value)}
-            ></input>
+
+            <div id="name-input-block">
+                <label>Name</label>
+                <input
+                    type="text"
+                    placeholder="Name of your spot"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                ></input>
+            </div>
+
+            <hr className="line-break"></hr>
 
             <h2>Set a base price for your spot</h2>
             <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
 
-            <label>$</label>
-            <input
-                type="text"
-                placeholder="Price per night(USD)"
-                value={price}
-                onChange={e => setPrice(e.target.value)}
-            ></input>
+            <div>
+                <label>$</label>
+                <input
+                    type="text"
+                    placeholder="Price per night(USD)"
+                    value={price}
+                    onChange={e => setPrice(e.target.value)}
+                ></input>
+            </div>
+
+            <hr className="line-break"></hr>
 
             <h2>Liven up your spot with photos</h2>
             <p>Submit a link to at least one photo to publish your spot.</p>
-            
+
             <div className="images-inputs">
                 <input
                     type="text"
@@ -190,7 +214,10 @@ export default function CreateSpot() {
                 ></input>
             </div>
 
-            <button type="submit" >
+            <button
+                type="submit"
+                id="create-spot-submit"
+            >
                 Create Spot
             </button>
         </form>

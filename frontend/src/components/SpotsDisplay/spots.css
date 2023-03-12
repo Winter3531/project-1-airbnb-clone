@@ -1,3 +1,14 @@
+.all-spots-page {
+    display: flex;
+    font-family: monospace;
+    background-color: black;
+}
+
+h1#header {
+    text-align: center;
+    font-family: monospace;
+}
+
 .spots-container {
     display: flex;
     align-items: space-between;
@@ -8,8 +19,36 @@
 }
 
 .spot-card {
-    height: 300px;
-    width: 300px;
-    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    height: 410px;
+    width: 350px;
+    border: 2px solid lightgrey;
     margin: 40px;
+    background-color: lightgrey;
+    border-radius: 2%;
+}
+
+.spot-name-price {
+    display: grid;
+    grid-template-columns: 120px 1fr 120px;
+    grid-template-rows: repeat(2, 50px);
+    grid-template-areas:
+                "name . review"
+                "price . .";
+}
+
+#spot-name {
+    grid-area: name;
+    text-align: center;
+}
+
+.spot-review {
+    grid-area: review;
+    text-align: center;
+}
+
+#spot-price {
+    grid-area: price;
 }

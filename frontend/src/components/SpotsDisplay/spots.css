@@ -1,10 +1,3 @@
-.spot-card {
-    height: 300px;
-    width: 300px;
-    border: 2px solid black;
-    margin: 40px;
-}
-
 .spots-container {
     display: flex;
     align-items: space-between;
@@ -12,4 +5,11 @@
     height: 100%;
     width: 100%;
     flex-wrap: wrap;
+}
+
+.spot-card {
+    height: 300px;
+    width: 300px;
+    border: 2px solid black;
+    margin: 40px;
 }

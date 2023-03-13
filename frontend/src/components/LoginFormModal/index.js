@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import * as sessionActions from '../../store/session'
 
-import './loginform.css';
+import './loginForm.css';
 
 export default function LoginFormModal() {
   const dispatch = useDispatch()

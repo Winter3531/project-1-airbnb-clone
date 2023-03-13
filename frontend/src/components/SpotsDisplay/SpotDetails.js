@@ -36,6 +36,7 @@ export default function SpotDetails() {
         "December"
     ]
 
+
     useEffect(() => {
         dispatch(spotDataThunk(spotId));
         dispatch(spotReviewsThunk(spotId));
@@ -44,6 +45,21 @@ export default function SpotDetails() {
     const pluralReview = spot?.numReviews > 1 ? 'Reviews' : 'Review'
 
     const dotNoDot = spot?.numReviews < 1 ? <div><i className="fa-solid fa-star"></i> {spot?.avgStarRating} </div> : <div><i className="fa-solid fa-star"></i> {spot?.avgStarRating} · {spot?.numReviews} {pluralReview} </div>
+
+    let noReviews = true;
+    allReviews?.map(review => {
+        if(review.userId === sessionUser){
+            return noReviews = false;
+        }
+    })
+
+    // for (let review of allReviews){
+    //     console.log(review.userId, sessionUser)
+    //     if(review.userId === sessionUser){
+    //         noReviews = false;
+    //         return;
+    //     }
+    // }
 
     const closeMenu = () => setShowMenu(false);
 
@@ -103,7 +119,7 @@ export default function SpotDetails() {
                     </div>
                 </div>
             )}
-            {sessionUser && sessionUser !== spot?.ownerId && (
+            {sessionUser && sessionUser !== spot?.ownerId && noReviews && (
                 <OpenModalButton
                     buttonText="Post Review"
                     onButtonClick={closeMenu}

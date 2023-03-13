@@ -1,11 +1,20 @@
 .hidden {display: none}
 
-ul {
-    background-color: rgb(39, 39, 39);
-}
-
 a:link,
 a:visited {
-    color: lightgrey;
     text-decoration: none;
+}
+
+div#nav-container {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+                "create home";
+}
+
+#right-side-feat {
+    display: flex;
+    grid-area: home;
+    flex-direction: row-reverse;
 }

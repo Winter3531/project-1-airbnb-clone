@@ -19,6 +19,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     width: 75%;
+    margin-bottom: 15px;
 }
 
 .update-address-block {
@@ -76,4 +77,5 @@ textarea {
     background-color: rgb(240, 65, 65);
     border: rgb(240, 65, 65);
     border-radius: 5%;
+    margin-bottom: 15px;
 }

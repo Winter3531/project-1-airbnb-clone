@@ -4,6 +4,7 @@
     align-items: flex-end;
     flex-wrap: wrap;
     color: lightgrey;
+    margin: 40px;
 }
 
 .images-container {
@@ -27,6 +28,7 @@
 }
 
 .callout-box {
+    margin: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +38,7 @@
     border-radius: 2%;
     background-color: lightgrey;
     color: black;
-    
+
 }
 
 #reserve-button {

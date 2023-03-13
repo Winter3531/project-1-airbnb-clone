@@ -117,8 +117,6 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const imgCount = reviewData.ReviewImages.length;
     reviewData.imgCount = imgCount
 
-    console.log(reviewData.imgCount)
-
     // check for image count
     if(reviewData.imgCount === 10){
         return res.status(403).json({

@@ -15,7 +15,6 @@ export default function PostReviewModal({ spotId }) {
     const [stars, setStars] = useState(1)
 
     const { closeModal } = useModal();
-    // console.log(review, stars)
 
     const newReview = {
         review,

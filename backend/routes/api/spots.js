@@ -259,7 +259,6 @@ router.get('/:spotId', async (req, res, next) => {
     if (!spot) {
         const err = new Error("Spot couldn't be found");
         err.statusCode = 404;
-        console.log(err)
         return res.json({
             message: err.message,
             statusCode: err.statusCode
@@ -477,7 +476,6 @@ router.post('/:spotId/reviews', requireAuth, reviewValidation, async (req, res) 
             statusCode: 404
         })
     }
-    console.log(userId)
 
     // user already has a review for the spot?
     for await (rev of spot.Reviews) {
@@ -529,8 +527,6 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
             statusCode: 404
         })
     };
-
-    // console.log(spot.ownerId, user, spot.id, spotId)
 
     // If spot owner response
     if (spot.ownerId === user) {
@@ -661,7 +657,6 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
         }
     })
 
-    console.log(spot)
     if (!spot) {
         return res.status(404).json({
             message: "Spot couldn't be found",

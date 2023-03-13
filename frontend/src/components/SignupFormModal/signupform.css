@@ -1,29 +1,22 @@
-.log-in-form {
+.sign-up-form {
     color: black;
     font-family: monospace;
+    background-color: lightgrey;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
+    padding: 30%;
 }
 
-h1 {
-    text-align: center;
-}
-
-#login-submit {
-    margin-left: 2px;
-    font-family: monospace;
-    background-color: rgb(240, 65, 65);
-    border: rgb(240, 65, 65);
-    border-radius: 5%;
-}
-
-
-#demo-button {
+.sign-up-inputs {
+    display: flex;
     justify-content: center;
-    align-self: center;
+    flex-direction: column;
+}
+
+#submit-sign-up {
     margin-top: 10px;
     font-family: monospace;
     background-color: rgb(240, 65, 65);

@@ -5,7 +5,9 @@ import { useModal } from '../../context/Modal';
 import { addReviewThunk, spotReviewsThunk } from "../../store/reviews";
 import { spotDataThunk } from "../../store/spots";
 
-export default function PostReviewModal ({spotId}) {
+import './postreviewform.css'
+
+export default function PostReviewModal({ spotId }) {
 
     const dispatch = useDispatch()
 
@@ -23,14 +25,14 @@ export default function PostReviewModal ({spotId}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await dispatch(addReviewThunk(newReview, spotId))
-        .then(dispatch(spotReviewsThunk(spotId)))
-        .then(dispatch(spotDataThunk(spotId)))
-        .then(closeModal)
+            .then(dispatch(spotReviewsThunk(spotId)))
+            .then(dispatch(spotDataThunk(spotId)))
+            .then(closeModal)
     }
 
     return (
-        <>
-        <h1>Create a New Review</h1>
+        <div className="post-review-form">
+            <h1>Create a New Review</h1>
             <form
                 className="review-input-form"
                 onSubmit={handleSubmit}
@@ -56,6 +58,6 @@ export default function PostReviewModal ({spotId}) {
                     type="submit"
                 >Submit your Review</button>
             </form>
-        </>
+        </div>
     )
 }

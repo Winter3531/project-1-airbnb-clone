@@ -1,0 +1,20 @@
+.delete-confirmation-form {
+    color: black;
+    font-family: monospace;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding: 5%;
+}
+
+.delete-confirmation-form button {
+    margin: 10px;
+    font-family: monospace;
+    background-color: rgb(240, 65, 65);
+    border: rgb(240, 65, 65);
+    border-radius: 5%;
+    width: 35%;
+}

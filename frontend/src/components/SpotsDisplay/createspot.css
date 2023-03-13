@@ -71,7 +71,9 @@ textarea {
     width: 75%;
 }
 
-#create-spoit-submit {
+#create-spot-submit {
     font-family: monospace;
-
+    background-color: rgb(240, 65, 65);
+    border: rgb(240, 65, 65);
+    border-radius: 5%;
 }

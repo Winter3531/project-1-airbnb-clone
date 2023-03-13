@@ -1,0 +1,79 @@
+.update-form {
+    display: flex;
+    width: 50%;
+    padding-left: 25%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+}
+
+.line-break {
+    border: 2px solid lightgrey;
+    border-radius: 70%;
+    width: 100%;
+}
+
+.images-input-upd {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 75%;
+}
+
+.update-address-block {
+    display: grid;
+    grid-template-columns: repeat(1fr 3);
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+                "address address address"
+                "city city state"
+                "country country .";
+}
+
+.street-sub-block-upd {
+    grid-area: address;
+}
+
+.street-sub-block-upd input {
+    width: 70%;
+}
+
+.city-sub-block-upd {
+    grid-area: city;
+}
+
+.city-sub-block-upd input {
+    width: 79%;
+}
+
+.state-sub-block-upd {
+    grid-area: state;
+}
+
+.state-sub-block-upd input {
+    width: 74.5%;
+}
+
+.country-sub-block-upd {
+    grid-area: country;
+}
+
+.country-sub-block-upd input {
+    width: 68%;
+}
+
+textarea {
+    width: 75%;
+}
+
+#name-input-block-upd input {
+    width: 75%;
+}
+
+#update-spot-submit {
+    font-family: monospace;
+    background-color: rgb(240, 65, 65);
+    border: rgb(240, 65, 65);
+    border-radius: 5%;
+}

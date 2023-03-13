@@ -55,7 +55,6 @@ export const allSpotThunk = () => async (dispatch) => {
     const response = await csrfFetch(`/api/spots`);
     const data = await response.json();
 
-    // console.log(data)
 
     dispatch(getSpots(data.Spots));
     return response;
@@ -78,7 +77,6 @@ export const createSpotThunk = (spotObj, images) => async (dispatch) => {
     });
 
     const spot = await response.json();
-    console.log(response)
 
     for await (let image of images) {
         const addImage = await csrfFetch(`/api/spots/${spot.id}/images`, {
@@ -151,7 +149,6 @@ export default function spotsReducer(state = {}, action) {
 
         case CREATE_SPOT:
             const addedState = { ...state.spots };
-            // console.log("in the reducer", addedState)
             addedState[action.newSpot.id] = action.newSpot;
 
             return addedState;
@@ -164,7 +161,6 @@ export default function spotsReducer(state = {}, action) {
 
         case UPDATE_SPOT:
             const updatedState = { ...state.spots };
-            // console.log("in the reducer", addedState)
             updatedState[action.newSpot.id] = action.newSpot;
 
             return updatedState;

@@ -66,7 +66,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
             id: bookingId
         }
     })
-    // console.log(booking.toJSON())
     if (!booking) {
         return res.status(404).json({
             messsage: "Booking couldn't be found",

@@ -1,4 +1,4 @@
-.create-form {
+.update-form {
     display: flex;
     width: 50%;
     padding-left: 25%;
@@ -14,14 +14,14 @@
     width: 100%;
 }
 
-.images-inputs {
+.images-input-upd {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     width: 75%;
 }
 
-.address-block {
+.update-address-block {
     display: grid;
     grid-template-columns: repeat(1fr 3);
     grid-template-rows: 1fr 1fr;
@@ -31,35 +31,35 @@
                 "country country .";
 }
 
-.street-sub-block {
+.street-sub-block-upd {
     grid-area: address;
 }
 
-.street-sub-block input {
+.street-sub-block-upd input {
     width: 70%;
 }
 
-.city-sub-block {
+.city-sub-block-upd {
     grid-area: city;
 }
 
-.city-sub-block input {
+.city-sub-block-upd input {
     width: 79%;
 }
 
-.state-sub-block {
+.state-sub-block-upd {
     grid-area: state;
 }
 
-.state-sub-block input {
+.state-sub-block-upd input {
     width: 74.5%;
 }
 
-.country-sub-block {
+.country-sub-block-upd {
     grid-area: country;
 }
 
-.country-sub-block input {
+.country-sub-block-upd input {
     width: 68%;
 }
 
@@ -67,11 +67,11 @@ textarea {
     width: 75%;
 }
 
-#name-input-block input {
+#name-input-block-upd input {
     width: 75%;
 }
 
-#create-spot-submit {
+#update-spot-submit {
     font-family: monospace;
     background-color: rgb(240, 65, 65);
     border: rgb(240, 65, 65);

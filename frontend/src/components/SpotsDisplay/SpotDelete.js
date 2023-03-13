@@ -4,7 +4,9 @@ import { useModal } from "../../context/Modal";
 import { deleteSpotThunk } from "../../store/spots";
 import { currentSpotsThunk } from "../../store/spots";
 
-export default function SpotDelete ({spotId}) {
+import './spotdelete.css'
+
+export default function SpotDelete({ spotId }) {
 
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -16,19 +18,21 @@ export default function SpotDelete ({spotId}) {
     }
 
     return (
-        <>
+        <div className="delete-confirmation-form">
             <h1>Confirm Delete</h1>
             <p>Are you sure you want to remove this spot?</p>
-            <button
-                onClick={handleDelete}
-            >
-                Yes
-            </button>
-            <button
-                onClick={closeModal}
-            >
-                No
-            </button>
-        </>
+            <div>
+                <button
+                    onClick={handleDelete}
+                >
+                    Yes
+                </button>
+                <button
+                    onClick={closeModal}
+                >
+                    No
+                </button>
+            </div>
+        </div>
     )
 }

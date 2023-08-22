@@ -1,17 +1,11 @@
 .all-spots-page {
     display: flex;
-    font-family: monospace;
-    background-color: rgb(39, 39, 39);
-}
-
-h1#header {
-    text-align: center;
-    font-family: monospace;
 }
 
 .spots-container {
     display: flex;
     align-items: space-between;
+    justify-content: center;
     flex-direction: row;
     height: 100%;
     width: 100%;
@@ -20,48 +14,39 @@ h1#header {
 
 .spot-card {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: stretch;
     height: 410px;
     width: 350px;
-    border: 2px solid lightgrey;
-    margin: 40px;
-    background-color: lightgrey;
-    border-radius: 2%;
+    margin: 25px;
 }
 
-.spot-name-price {
-    display: grid;
-    grid-template-columns: 120px 1fr 120px;
-    grid-template-rows: repeat(2, 50px);
-    grid-template-areas:
-                "name . review"
-                "price . .";
+.spot-data {
+    display: flex;
+}
+
+.spot-name-price-div {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
 }
 
 #spot-name {
-    grid-area: name;
-    text-align: center;
-}
-
-.spot-review {
-    grid-area: review;
-    text-align: center;
+    text-align: start;
+    margin-bottom: 3px;
 }
 
 #spot-price {
-    grid-area: price;
+    text-align: start;
+    margin-top: 3px;
 }
 
-a:visited,
-a:visited {
-    color: black;
+.spot-review-div {
+    display: flex;
+    width: 15%;
+}
+#spot-review {
+    width: 100%;
 }
 
-a:hover {
-    color: rgb(42, 4, 4);
-}
-
-#home {
-    color: lightgrey;
+.spot-review {
+    text-align: center;
 }

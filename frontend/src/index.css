@@ -1,6 +1,17 @@
 /* TODO Add site wide styles */
 
 body {
-    background-color: rgb(39, 39, 39);
-    color: lightgrey;
+    display: flex;
+    justify-content: center;
+}
+
+#root {
+    width: 93%;
+    max-width: 1737px;
+}
+
+a:visited,
+a:link {
+    color: black;
+    text-decoration: none;
 }

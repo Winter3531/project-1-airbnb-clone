@@ -1,20 +1,59 @@
 .hidden {display: none}
 
-a:link,
-a:visited {
-    text-decoration: none;
+.full-nav-div {
+    height: 9%;
 }
 
-div#nav-container {
-    display: grid;
-    grid-template-columns: 1fr 10fr;
-    grid-template-rows: 1fr;
-    grid-template-areas:
-                "create home";
-}
-
-#right-side-feat {
+.nav {
     display: flex;
-    grid-area: home;
-    flex-direction: row-reverse;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.left-side-nav {
+    display: flex;
+    height: 100%;
+    width: 50%;
+    margin: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.right-side-nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    margin: 20px;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+#home {
+font-size: 350%;
+margin: 20px;
+color: red;
+}
+
+#profile-icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35%;
+    width: 7%;
+    font-size: 120%;
+    border: 1px solid black;
+    border-radius: 30%;
+    background-color: white;
+}
+
+.profile-dropdown {
+margin: 0%;
+border: 1px solid black;
+border-radius: 8%;
+padding: 1%;
+}
+
+#log-in-button {
+    border: none;
 }

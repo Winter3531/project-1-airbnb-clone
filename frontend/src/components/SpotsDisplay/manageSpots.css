@@ -34,7 +34,7 @@ div.update-delete {
     grid-template-rows: 1fr;
 }
 
-div.update-delete button {
+div.update-delete {
     height: 35px;
     width: 90px;
     font-family: monospace;

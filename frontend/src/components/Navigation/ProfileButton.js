@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { FaBars, FaUserCircle } from 'react-icons/fa';
+
 import * as sessionActions from '../../store/session';
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
@@ -43,8 +45,8 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button id="profile-icon-button" onClick={openMenu}>
+        <FaBars /><FaUserCircle />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -67,12 +69,13 @@ function ProfileButton({ user }) {
           <>
             <div>
               <OpenModalButton
+                id="log-in-button"
                 buttonText="Log In"
                 onButtonClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
             </div>
-            <div>
+            <div id="log-in-button">
               <OpenModalButton
                 buttonText="Sign Up"
                 onButtonClick={closeMenu}

@@ -10,6 +10,7 @@
     height: 100%;
     width: 100%;
     flex-wrap: wrap;
+    margin-top: 2%;
 }
 
 .spot-card {
@@ -49,4 +50,8 @@
 
 .spot-review {
     text-align: center;
+}
+
+.spot-image-main {
+    border-radius: 8%;
 }

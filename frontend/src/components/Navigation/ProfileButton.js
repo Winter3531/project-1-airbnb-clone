@@ -51,9 +51,9 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
+            <p className="user-info-list" >{user.username}</p>
+            <p className="user-info-list" >{user.firstName} {user.lastName}</p>
+            <p className="user-info-list" >{user.email}</p>
             <div>
               <NavLink to="/spots/current" >
                 <button >
@@ -69,13 +69,12 @@ function ProfileButton({ user }) {
           <>
             <div>
               <OpenModalButton
-                id="log-in-button"
                 buttonText="Log In"
                 onButtonClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
             </div>
-            <div id="log-in-button">
+            <div >
               <OpenModalButton
                 buttonText="Sign Up"
                 onButtonClick={closeMenu}

@@ -21,18 +21,23 @@
 
 .right-side-nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100%;
     width: 50%;
     margin: 20px;
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 #home {
 font-size: 350%;
 margin: 20px;
 color: red;
+}
+
+#create-spot-link {
+    margin-top: 1%;
+    margin-right: 1%;
 }
 
 #profile-icon-button {
@@ -52,8 +57,10 @@ margin: 0%;
 border: 1px solid black;
 border-radius: 8%;
 padding: 1%;
+background-color: white;
 }
 
-#log-in-button {
-    border: none;
+.user-info-list {
+    margin: 0px;
+    margin-bottom: 2%;
 }

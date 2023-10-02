@@ -53,9 +53,9 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <p className="user-info-list" >{user.username}</p>
-            <p className="user-info-list" >{user.firstName} {user.lastName}</p>
+            <p className="user-info-list" >Hello, {user.username}</p>
             <p className="user-info-list" >{user.email}</p>
+            <hr></hr>
             <div>
               <NavLink to="/spots/current" >
                 <button >
@@ -63,6 +63,7 @@ function ProfileButton({ user }) {
                 </button>
               </NavLink>
             </div>
+            <hr></hr>
             <div>
               <button onClick={logout}>Log Out</button>
             </div>

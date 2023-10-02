@@ -1,29 +1,26 @@
-.log-in-form {
-    color: black;
-    font-family: monospace;
+.log-in-div {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     justify-content: center;
-    align-content: center;
+    align-items: center;
+    width: 150%;
+    background-color: white;
+    padding: 15%;
 }
 
-
-#login-submit {
-    margin-left: 2px;
-    font-family: monospace;
-    background-color: rgb(240, 65, 65);
-    border: rgb(240, 65, 65);
-    border-radius: 5%;
+.log-in-form {
+    display: flex;
+    flex-direction: column;
 }
 
+.email-password-input {
+    margin: 5%;
+}
 
 #demo-button {
-    justify-content: center;
-    align-self: center;
-    margin-top: 10px;
-    font-family: monospace;
-    background-color: rgb(240, 65, 65);
-    border: rgb(240, 65, 65);
-    border-radius: 5%;
+    border: none;
+    text-decoration: underline;
+    background-color: white;
+    font-size: large;
+    margin: 5%;
 }

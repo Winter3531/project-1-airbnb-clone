@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import { FaAirbnb, FaBars, FaUserCircle } from 'react-icons/fa';
+import { FaAirbnb} from 'react-icons/fa';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {

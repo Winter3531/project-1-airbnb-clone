@@ -8,15 +8,17 @@
     display: flex;
     justify-content: space-between;
     height: 100%;
+    margin-top: 2%;
+
 }
 
 .left-side-nav {
     display: flex;
     height: 100%;
     width: 50%;
-    margin: 20px;
     justify-content: flex-start;
     align-items: center;
+
 }
 
 .right-side-nav {
@@ -24,16 +26,16 @@
     flex-direction: row;
     height: 100%;
     width: 50%;
-    margin: 20px;
     justify-content: flex-end;
     align-items: flex-start;
+
 }
 
 #home {
-font-size: 350%;
-margin: 20px;
-margin-left: 15%;
-color: red;
+    font-size: 350%;
+    margin: 20px;
+    margin-left: 15%;
+    color: red;
 }
 
 #create-spot-link {
@@ -55,6 +57,7 @@ color: red;
     flex-direction: column;
     width: 25%;
     justify-content: flex-end;
+    z-index: 1;
 }
 
 #profile-icon-button {
@@ -76,7 +79,6 @@ color: red;
 .profile-dropdown {
 z-index: 1;
 margin: 0%;
-margin-right: 250%;
 border: 1px solid black;
 border-radius: 8%;
 padding: 5%;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { FaBars, FaUserCircle } from 'react-icons/fa';
@@ -13,6 +13,7 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const sessionUser = useSelector(state => state.session.user);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -42,11 +43,12 @@ function ProfileButton({ user }) {
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const dropDownClassName = "profile-drop-button" + (sessionUser ? "" : "hidden")
 
   return (
-    <>
+    <div className={dropDownClassName}>
       <button id="profile-icon-button" onClick={openMenu}>
-        <FaBars /><FaUserCircle />
+        <FaBars id="FaBars-nav" /><FaUserCircle />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -84,7 +86,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

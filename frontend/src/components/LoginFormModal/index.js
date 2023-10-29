@@ -43,11 +43,9 @@ export default function LoginFormModal() {
     <div className="log-in-div">
       <h1>Log In</h1>
       <form className="log-in-form" onSubmit={handleSubmit}>
-        <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <p key={idx} id='error-log-in-form'>{error}</p>
           ))}
-        </ul>
           <input
             type="text"
             value={credential}

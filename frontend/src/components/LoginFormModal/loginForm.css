@@ -1,20 +1,23 @@
 .log-in-div {
+    border-radius: 8%;
+    border: 5px black solid;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 150%;
+    width: 390px;
     background-color: white;
-    padding: 15%;
 }
 
 .log-in-form {
     display: flex;
     flex-direction: column;
+    width: 85%;
 }
 
 .email-password-input {
-    margin: 5%;
+    height: 25px;
+    margin: 2%;
 }
 
 #demo-button {
@@ -23,4 +26,8 @@
     background-color: white;
     font-size: large;
     margin: 5%;
+}
+
+#error-log-in-form{
+    color: red;
 }

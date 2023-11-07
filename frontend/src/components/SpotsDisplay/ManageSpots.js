@@ -44,8 +44,7 @@ export default function ManageSpots() {
                                         <>
                                             <div className='manage-spot-card' key={`spotId-${spot.id}`} >
                                                 <div className="manage-spot-info" >
-                                                    <h3>{spot.name}</h3>
-                                                    <img src={spot.previewImage} alt={`previewimg${spot.id}`} id="spot-img" height={290} width={350} />
+                                                    <img src={spot.previewImage} alt={`previewimg${spot.id}`} id="spot-img-manage" height={265} width={300} />
                                                     <div className="manage-spot-data" >
                                                         <p>${spot.price} night</p>
                                                         <p><i className="fa-solid fa-star"></i>{spot.avgRating}</p>
@@ -58,7 +57,7 @@ export default function ManageSpots() {
                                                         </button>
                                                     </NavLink>
                                                     <OpenModalButton
-                                                        buttonText="Delete Spot"
+                                                        buttonText="Delete"
                                                         onButtonClick={closeMenu}
                                                         modalComponent={<SpotDelete spotId={spot.id} />}
                                                     />

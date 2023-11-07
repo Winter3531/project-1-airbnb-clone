@@ -23,7 +23,7 @@ export default function SpotsDisplay() {
                         return (
                             <div className='spot-card' key={`spotId-${spot.id}`} >
                                 <NavLink to={`/spots/${spot.id}`} >
-                                    <img src={spot.previewImage} alt={`previewimg-${spot.id}`} height={315} width={350} />
+                                    <img className="spot-image-main" src={spot.previewImage} alt={`previewimg-${spot.id}`} height={265} width={300} />
                                     <div className="spot-data">
                                         <div className="spot-name-price-div">
                                             <h3 id="spot-name">{spot.city}, {spot.state}</h3>

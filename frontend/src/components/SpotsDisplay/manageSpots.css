@@ -1,7 +1,5 @@
 .manage-spots {
     font-family: monospace;
-    color: antiquewhite;
-    background-color: rgb(39, 39, 39);
 }
 
 h1#header {
@@ -11,14 +9,14 @@ h1#header {
 .manage-spot-card {
     display: flex;
     flex-wrap: wrap;
-    justify-content: stretch;
-    height: 430px;
-    width: 350px;
-    border: 2px solid lightgrey;
+    height: 350px;
+    width: 300px;
     margin: 40px;
-    background-color: lightgrey;
-    color: black;
     border-radius: 2%;
+}
+
+#spot-img-manage {
+    border-radius: 8%;
 }
 
 .manage-spot-data {

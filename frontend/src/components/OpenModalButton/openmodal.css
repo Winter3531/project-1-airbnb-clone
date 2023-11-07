@@ -1,3 +1,5 @@
-button {
+#modal-button-only {
+    margin-top: 2%;
     border: none;
+    background-color: white;
 }

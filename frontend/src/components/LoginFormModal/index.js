@@ -54,7 +54,6 @@ export default function LoginFormModal() {
             placeholder='Username or Email'
             className='email-password-input'
           />
-
           <input
             type="password"
             value={password}

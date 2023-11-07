@@ -31,3 +31,7 @@
 #error-log-in-form{
     color: red;
 }
+
+#login-submit {
+    background-color: lightgrey;
+}

@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { NavLink } from 'react-router-dom'
 
 import { allSpotThunk } from "../../store/spots"
-import './spots.css'
+import './Spots.css'
 
 export default function SpotsDisplay() {
 
@@ -16,32 +16,29 @@ export default function SpotsDisplay() {
     }, [dispatch])
 
     return (
-        <>
-            <h1 id="header">Spots</h1>
-            <div className="all-spots-page">
-                {allSpots && (
-                    <div className='spots-container'>
-                        {allSpots.map(spot => {
-                            return (
-                                <>
-                                    <div className='spot-card' key={`spotId-${spot.id}`} >
-                                        <NavLink to={`/spots/${spot.id}`} >
-                                            <img src={spot.previewImage} alt={`previewimg-${spot.id}`} height={315} width={350} />
-                                            <div className="spot-data">
-                                                <div className="spot-name-price">
-                                                    <h3 id="spot-name">{spot.name}</h3>
-                                                    <p className="spot-review"><i className="fa-solid fa-star"></i> {spot.avgRating}</p>
-                                                    <p id="spot-price">${spot.price} night</p>
-                                                </div>
-                                            </div>
-                                        </NavLink>
+        <div className="all-spots-page">
+            {allSpots && (
+                <div className='spots-container'>
+                    {allSpots.map(spot => {
+                        return (
+                            <div className='spot-card' key={`spotId-${spot.id}`} >
+                                <NavLink to={`/spots/${spot.id}`} >
+                                    <img className="spot-image-main" src={spot.previewImage} alt={`previewimg-${spot.id}`} height={265} width={300} />
+                                    <div className="spot-data">
+                                        <div className="spot-name-price-div">
+                                            <h3 id="spot-name">{spot.city}, {spot.state}</h3>
+                                            <p id="spot-price">${spot.price} night</p>
+                                        </div>
+                                        <div className="spot-review-div" >
+                                            <p id="spot-review" ><i className="fa-solid fa-star"></i> {spot.avgRating}</p>
+                                        </div>
                                     </div>
-                                </>
-                            )
-                        })}
-                    </div>
-                )}
-            </div>
-        </>
+                                </NavLink>
+                            </div>
+                        )
+                    })}
+                </div>
+            )}
+        </div>
     )
 }

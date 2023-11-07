@@ -2,29 +2,29 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import { FaAirbnb} from 'react-icons/fa';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   return (
-    <div >
+    <div className='full-nav-div'>
       {isLoaded && (
-        <div id='nav-container'>
-          {sessionUser && (
-            <NavLink to="/spots/new" >
-              <button className='create-spot-button' >
-                Create Spot
-              </button>
-            </NavLink>
-          )}
-          <div id='right-side-feat'>
-            <NavLink exact to="/spots" id='home'>
-              <i className="fa-sharp fa-solid fa-house"></i>
-            </NavLink>
+        <>
+        <div className='nav'>
+          <div className='left-side-nav'>
+            <NavLink exact to="/spots" id='home'><FaAirbnb id="home-symbol" />airbnb</NavLink>
+          </div>
+          <div className='right-side-nav'>
+            {sessionUser && (
+              <NavLink id="create-spot-link" to="/spots/new" >Create a New Spot</NavLink>
+            )}
             <ProfileButton user={sessionUser} />
           </div>
         </div>
+        <hr></hr>
+        </>
       )}
     </div>
   );

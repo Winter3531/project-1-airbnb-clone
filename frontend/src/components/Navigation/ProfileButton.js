@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
+import { FaBars, FaUserCircle } from 'react-icons/fa';
 
 import * as sessionActions from '../../store/session';
 import OpenModalButton from '../OpenModalButton';
@@ -11,6 +13,7 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const sessionUser = useSelector(state => state.session.user);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -40,18 +43,19 @@ function ProfileButton({ user }) {
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const dropDownClassName = "profile-drop-button" + (sessionUser ? "" : "hidden")
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div className={dropDownClassName}>
+      <button id="profile-icon-button" onClick={openMenu}>
+        <FaBars id="FaBars-nav" /><FaUserCircle />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
+            <p className="user-info-list" >Hello, {user.username}</p>
+            <p className="user-info-list" >{user.email}</p>
+            <hr></hr>
             <div>
               <NavLink to="/spots/current" >
                 <button >
@@ -59,6 +63,7 @@ function ProfileButton({ user }) {
                 </button>
               </NavLink>
             </div>
+            <hr></hr>
             <div>
               <button onClick={logout}>Log Out</button>
             </div>
@@ -72,7 +77,7 @@ function ProfileButton({ user }) {
                 modalComponent={<LoginFormModal />}
               />
             </div>
-            <div>
+            <div >
               <OpenModalButton
                 buttonText="Sign Up"
                 onButtonClick={closeMenu}
@@ -82,7 +87,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

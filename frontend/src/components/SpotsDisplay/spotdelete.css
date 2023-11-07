@@ -10,7 +10,7 @@
     padding: 5%;
 }
 
-.delete-confirmation-form button {
+.delete-confirmation-form {
     margin: 10px;
     font-family: monospace;
     background-color: rgb(240, 65, 65);

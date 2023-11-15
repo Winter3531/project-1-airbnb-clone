@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { NavLink } from 'react-router-dom'
 
 import { allSpotThunk } from "../../store/spots"
-import './Spots.css'
+import './spots.css'
 
 export default function SpotsDisplay() {
 

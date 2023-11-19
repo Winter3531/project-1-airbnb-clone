@@ -48,7 +48,7 @@ export default function SpotDetails() {
 
     let noReviews = true;
     allReviews?.map(review => {
-        if(review.userId === sessionUser){
+        if (review.userId === sessionUser) {
             return noReviews = false;
         }
     })
@@ -71,9 +71,9 @@ export default function SpotDetails() {
                     <h3>{spot.city}, {spot.state}, {spot.country}</h3>
                     {spot && spot?.SpotImages && (
                         <div className="images-container">
-                            <img src={spot?.SpotImages[0]?.url} alt={`imageId-preview-image`} height={700} width={900} />
+                            <img src={spot?.SpotImages[0]?.url} alt={`imageId-preview-image`} className="spot-detail-images" />
                             <div className="sub-images-container">
-                                {spot?.SpotImages?.slice(1).map(image => <img src={image.url} alt={`imageId-${image.id}`} key={image.id} height={350} width={450} />)}
+                                {spot?.SpotImages?.slice(1).map(image => <img src={image.url} alt={`imageId-${image.id}`} key={image.id} className="spot-detail-images" />)}
                             </div>
                         </div>
                     )}
@@ -83,8 +83,10 @@ export default function SpotDetails() {
                             <p>{spot.description}</p>
                         </div>
                         <div className="callout-box" >
-                            {dotNoDot}
-                            <div id="price">${spot.price}/night</div>
+                            <div id="callout-box-upper">
+                                {dotNoDot}
+                                <div id="price">${spot.price}/night</div>
+                            </div>
                             <button
                                 id="reserve-button"
                                 onClick={e => alert("Feature coming soon!")}
@@ -117,14 +119,14 @@ export default function SpotDetails() {
                             </div>
                         )}
                     </div>
+                    {sessionUser && sessionUser !== spot?.ownerId && noReviews && (
+                        <OpenModalButton
+                            buttonText="Post Review"
+                            onButtonClick={closeMenu}
+                            modalComponent={<PostReviewModal spotId={spotId} />}
+                        />
+                    )}
                 </div>
-            )}
-            {sessionUser && sessionUser !== spot?.ownerId && noReviews && (
-                <OpenModalButton
-                    buttonText="Post Review"
-                    onButtonClick={closeMenu}
-                    modalComponent={<PostReviewModal spotId={spotId} />}
-                />
             )}
         </div>
     )

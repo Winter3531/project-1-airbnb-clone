@@ -84,8 +84,8 @@ export default function SpotDetails() {
                         </div>
                         <div className="callout-box" >
                             <div id="callout-box-upper">
-                                {dotNoDot}
                                 <div id="price">${spot.price}/night</div>
+                                {dotNoDot}
                             </div>
                             <button
                                 id="reserve-button"

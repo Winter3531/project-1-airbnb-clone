@@ -28,16 +28,18 @@
 
 .spot-description-price-reserve {
     display: flex;
+    justify-content: space-between;
+    margin: 5%;
 }
 
 .callout-box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     border: 2px solid black;
-    border-radius: 8%;
-    width: 50%;
+    border-radius: 10% / 25%;
+    width: 35%;
 }
 
 .spot-owner-description {
@@ -45,7 +47,10 @@
 }
 
 #callout-box-upper {
+    width: 80%;
     display: flex;
+    justify-content: space-between;
+    margin: 5%;
 }
 
 #price {
@@ -54,8 +59,9 @@
 
 #reserve-button {
     background-color: rgb(240, 65, 65);
-    border: rgb(240, 65, 65);
-    border-radius: 5%;
+    width: 80%;
+    height: 30%;
+    box-shadow: 3px 3px 0px black;
 }
 
 hr {

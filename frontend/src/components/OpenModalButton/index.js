@@ -17,6 +17,9 @@ function OpenModalButton({
     setModalContent(modalComponent);
   };
 
+  if (buttonText === 'Post Your Review') {
+    return  <button id='post-review-button' onClick={onClick}>{buttonText}</button>
+  }
   return (
     <button id='modal-button-only' onClick={onClick}>{buttonText}</button>
   );

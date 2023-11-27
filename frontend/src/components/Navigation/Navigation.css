@@ -90,3 +90,7 @@ width: 75%;
     margin: 0px;
     margin-bottom: 2%;
 }
+
+#home-symbol {
+    rotate: 180deg;
+}

@@ -3,3 +3,13 @@
     border: none;
     background-color: white;
 }
+
+#post-review-button {
+    border: 2px solid black;
+    width: 15%;
+    text-align: center;
+    margin: 2%;
+    background-color: darkgrey;
+    color: white;
+    box-shadow: 3px 3px 0px black;
+}

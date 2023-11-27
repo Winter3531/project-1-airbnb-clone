@@ -29,6 +29,7 @@
 .spot-description-price-reserve {
     display: flex;
     justify-content: space-between;
+    margin: 5%;
 }
 
 .callout-box {
@@ -38,11 +39,11 @@
     justify-content: center;
     border: 2px solid black;
     border-radius: 10% / 25%;
-    width: 25%;
+    width: 35%;
 }
 
 .spot-owner-description {
-    width: 150%;
+    width: 100%;
 }
 
 #callout-box-upper {
@@ -60,6 +61,7 @@
     background-color: rgb(240, 65, 65);
     width: 80%;
     height: 30%;
+    box-shadow: 3px 3px 0px black;
 }
 
 hr {
